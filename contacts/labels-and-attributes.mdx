@@ -1,0 +1,31 @@
+---
+title: "Labels and attributes"
+description: "Organize contacts with labels and custom attributes on the connected phone number."
+keywords: ["labels", "attributes", "segments", "contacts"]
+---
+
+Labels and attributes belong to the connected phone number. Use them to group contacts and to store extra fields, such as a plan name or a city.
+
+## Labels
+
+Open **Contacts**, then **Labels**.
+
+- Create a label and assign it to contacts.
+- Import or export the label list.
+- Filter broadcasts and automation conditions by label.
+
+A contact can have more than one label. Deleting a label removes it from contacts. It does not delete the contacts.
+
+## Attributes
+
+Open **Contacts**, then **Attributes**.
+
+Attributes are the custom fields on a contact, separate from first name, last name, and phone number. Define the attribute once, then set a value on each contact.
+
+You can import and export attribute definitions the same way as labels.
+
+## Where they show up
+
+- Broadcast contact selection can filter the audience with labels and attributes.
+- Automations can check a label or an attribute, then set either one as a step.
+- The Developer API lists and updates both catalogs with `GET /v1/labels` and `GET /v1/attributes`. Contact payloads reference those ids.

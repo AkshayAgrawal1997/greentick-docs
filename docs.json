@@ -1,53 +1,29 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Greentick Docs",
+  "name": "GreenTick",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#128C7E",
+    "light": "#25D366",
+    "dark": "#075E54"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "dark": "/logo/dark.svg",
+    "href": "https://greentick.ai"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "href": "mailto:hello@greentick.ai"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "href": "https://dashboard.greentick.ai"
     }
   },
   "contextual": {
@@ -68,5 +44,84 @@
       "instagram": "https://instagram.com/greentick_ai",
       "youtube": "https://youtube.com/@WAGrowthLab"
     }
+  },
+  "search": {
+    "prompt": "Search GreenTick docs"
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.greentick.ai"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Getting started",
+            "icon": "rocket",
+            "pages": [
+              "index",
+              "quickstart",
+              "connect-whatsapp"
+            ]
+          },
+          {
+            "group": "Contacts",
+            "icon": "address-book",
+            "pages": [
+              "contacts/overview",
+              "contacts/labels-and-attributes"
+            ]
+          },
+          {
+            "group": "Messaging",
+            "icon": "comments",
+            "pages": [
+              "messaging/templates",
+              "messaging/broadcasts",
+              "messaging/live-chat"
+            ]
+          },
+          {
+            "group": "Automation",
+            "icon": "diagram-project",
+            "pages": [
+              "automation/automations",
+              "automation/flows",
+              "automation/ai-bot",
+              "automation/catalogs",
+              "automation/whatsapp-ads"
+            ]
+          },
+          {
+            "group": "Account",
+            "icon": "users",
+            "pages": [
+              "account/plans",
+              "account/team"
+            ]
+          },
+          {
+            "group": "Developers",
+            "icon": "code",
+            "pages": [
+              "developers/overview",
+              "developers/authentication",
+              "developers/send-messages",
+              "developers/webhooks",
+              "developers/integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "icon": "square-terminal",
+        "openapi": "openapi.json"
+      }
+    ]
   }
 }

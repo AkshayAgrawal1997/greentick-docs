@@ -1,0 +1,44 @@
+---
+title: "Integrations"
+description: "Send WhatsApp from Google Sheets today, and see which other tools are still marked coming soon."
+keywords: ["Google Sheets", "integrations", "Zapier", "HubSpot"]
+---
+
+Open **Integrations** in the dashboard. Google Sheets is available. HubSpot, Make, n8n, Zapier, Zoho, and the MCP server are listed as coming soon. You can still call the [Developer API](/developers/overview) from your own server.
+
+## Google Sheets
+
+The add-on **WhatsApp Message Automation: GreenTick** sends an approved template when a spreadsheet event fires.
+
+<Steps>
+  <Step title="Install the add-on">
+    Install [WhatsApp Message Automation: GreenTick](https://workspace.google.com/marketplace/app/whatsapp_message_automation_greentick/938755551469) from Google Workspace Marketplace. The setup guide is on [greentick.ai](https://greentick.ai/google-sheets-whatsapp-integration/).
+  </Step>
+  <Step title="Paste an API key">
+    Create a key in **Developer**. In the sheet, open **Extensions → Add-ons → WhatsApp Message Automation: GreenTick → Open automations** and paste the `gt_live_…` key. The key is stored in that spreadsheet's document properties.
+  </Step>
+  <Step title="Map a rule">
+    Row 1 is the header. Map columns to the template's named variables and choose a trigger: new row, column change, date is today, a daily or weekly schedule, or a Google Form submit. A spreadsheet can have up to 20 rules.
+  </Step>
+</Steps>
+
+For a **new row** rule, rows that already existed when you saved the rule are not sent. The add-on does not write send results back into cells. Recent triggers show in the sidebar, and delivery status shows in **Live Chat**.
+
+If the plan expires, GreenTick turns every rule off and keeps the key. After you renew, set the rules back to active.
+
+## Tools marked coming soon
+
+The Integrations page does not connect these yet:
+
+- HubSpot
+- Make
+- n8n
+- Zapier
+- Zoho
+- MCP server for AI assistants
+
+When they ship, each one will ask for the same Developer API key and will register webhooks under **Developer → Webhooks**. Until then, use `POST /v1/messages` and [webhooks](/developers/webhooks) from your own app.
+
+<Info>
+  Pabbly is not listed in the dashboard. Use the API directly if you need a custom connection.
+</Info>

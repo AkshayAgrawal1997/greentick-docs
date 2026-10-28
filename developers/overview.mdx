@@ -1,0 +1,39 @@
+---
+title: "Developer overview"
+description: "Use the GreenTick API to send WhatsApp messages, sync contacts, and receive webhooks."
+keywords: ["API", "developer", "REST", "gt_live"]
+---
+
+The Developer API is a JSON API for one WhatsApp Business account. You create a key in the dashboard, call `https://api.greentick.ai/v1`, and subscribe to signed webhooks when another system should hear about messages and orders.
+
+The API is included on Starter, Standard, and Premium. An expired plan returns `403` with code `PLAN_EXPIRED` until you renew.
+
+## Base URL
+
+```text
+https://api.greentick.ai/v1
+```
+
+`GET /v1/health` does not need a key. Every other route needs `Authorization: Bearer gt_live_…`.
+
+The full endpoint list, request bodies, and the interactive playground are in the API reference tab. That reference is generated from `openapi.json`, which matches `GET /v1/openapi.json`.
+
+## What the API covers
+
+- Send a session text or an approved template, including scheduled templates
+- List conversations and message history
+- Create and update contacts, labels, and attributes
+- List approved templates and the phone numbers on the account
+- Enroll a contact in an automation, or call a workflow hook
+- Create and manage templates, broadcasts, Flows, catalogs, and AI bots when the plan includes them
+- Register outbound webhooks
+
+## Create a key
+
+Open **Developer**, choose the WhatsApp Business account, enter a **Key name**, and click **Create API key**. The secret is shown once. Store it in a secret manager. The dashboard keeps only a prefix after that.
+
+If **Developer** says the section is in progress, key creation is turned off in that environment. Email [hello@greentick.ai](mailto:hello@greentick.ai) if you need it enabled.
+
+<Note>
+  A key is scoped to the WhatsApp Business account you selected. When that account has more than one phone number, pass `phoneNumberRef` from `GET /v1/phone-numbers` on send and list calls. If the account has a single number, GreenTick can use that number when the field is omitted.
+</Note>

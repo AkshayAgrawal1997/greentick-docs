@@ -1,0 +1,72 @@
+---
+title: "Send messages"
+description: "Send a WhatsApp text inside the 24-hour window or an approved template at any time."
+keywords: ["messages", "template", "scheduledAt", "phoneNumberRef"]
+---
+
+`POST /v1/messages` sends on the phone number tied to your API key. `to` is the customer's phone number with country code. GreenTick strips formatting and validates the number before it calls WhatsApp.
+
+Find `phoneNumberRef` with `GET /v1/phone-numbers`. Find approved template names with `GET /v1/templates?status=APPROVED`.
+
+## Text inside the customer service window
+
+Text sends only succeed within 24 hours of the customer's last message.
+
+```bash
+curl --request POST "https://api.greentick.ai/v1/messages" \
+  --header "Authorization: Bearer gt_live_YOUR_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "to": "919876543210",
+    "type": "text",
+    "phoneNumberRef": "668f1a2b3c4d5e6f7a8b9c0a",
+    "text": "Hello from GreenTick"
+  }'
+```
+
+Text messages cannot be scheduled.
+
+## Approved template
+
+Templates can start a conversation. Variables are named, and the names must match the template.
+
+```bash
+curl --request POST "https://api.greentick.ai/v1/messages" \
+  --header "Authorization: Bearer gt_live_YOUR_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "to": "919876543210",
+    "type": "template",
+    "phoneNumberRef": "668f1a2b3c4d5e6f7a8b9c0a",
+    "template": {
+      "name": "order_update",
+      "language": "en_US",
+      "variables": {
+        "customer_name": "Akshay",
+        "order_id": "ord_123"
+      }
+    }
+  }'
+```
+
+Optional template fields:
+
+- `headerMediaUrl` for an image, video, or document header
+- `dynamicURLVariable` when a URL button has a variable suffix
+- `copyCodeVariable` for a copy-code button
+- `scheduledAt` to send later. An offset or `Z` is that exact instant. A value without a zone uses the timezone from `GET /v1/api-key`
+
+A successful response includes `messageId`, the WhatsApp message id (`wamid`), and `conversationId`. The same conversation then shows in **Live Chat**.
+
+## Read a thread
+
+```bash
+curl "https://api.greentick.ai/v1/conversations?phoneNumberRef=668f1a2b3c4d5e6f7a8b9c0a&limit=30" \
+  --header "Authorization: Bearer gt_live_YOUR_API_KEY"
+```
+
+Fetch messages with `GET /v1/conversations/{id}/messages`.
+
+<Tip>
+  Mark an inbound message read with `POST /v1/messages/read` and the GreenTick `messageId`. Cancel a scheduled template with `DELETE /v1/messages/scheduled/{id}`.
+</Tip>

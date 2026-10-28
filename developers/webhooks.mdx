@@ -1,0 +1,61 @@
+---
+title: "Webhooks"
+description: "Receive signed GreenTick events when a message or catalog order changes."
+keywords: ["webhooks", "signature", "message.received", "order.received"]
+---
+
+Outbound webhooks tell your server about activity on the WhatsApp Business account. Create them on **Developer** → **Webhooks**, or with `POST /v1/webhooks`.
+
+The signing secret is returned once, on create or when you rotate it. Store it next to the API key.
+
+## Events
+
+| Event | When GreenTick sends it |
+| --- | --- |
+| `message.received` | A customer sends a message |
+| `message.sent` | WhatsApp accepts an outbound message |
+| `message.delivered` | WhatsApp delivers it |
+| `message.read` | The customer reads it |
+| `message.failed` | WhatsApp or GreenTick reports a failure |
+| `order.received` | A catalog order arrives |
+
+Subscribe only to the events you handle. A subscription created from the API is listed on **Developer** → **Webhooks** together with any subscription a connected app creates later.
+
+## Delivery
+
+- Your URL must respond with any HTTP `2xx` within 10 seconds. Do the work after you acknowledge.
+- GreenTick signs the raw body. The header is `X-GreenTick-Signature` with the form `t={unix_timestamp},v1={hex_hmac_sha256}`.
+- The signed payload is `{timestamp}.{raw_request_body}`.
+- Reject timestamps more than 300 seconds away from your clock.
+
+```javascript
+const crypto = require("crypto");
+
+function isValidGreenTickSignature(rawBody, header, secret) {
+  const parts = Object.fromEntries(
+    String(header || "")
+      .split(",")
+      .map((part) => part.split("="))
+      .filter((pair) => pair.length === 2),
+  );
+  const timestamp = parts.t;
+  const received = parts.v1;
+  if (!timestamp || !received) return false;
+  if (Math.abs(Date.now() / 1000 - Number(timestamp)) > 300) return false;
+
+  const expected = crypto
+    .createHmac("sha256", secret)
+    .update(`${timestamp}.${rawBody}`)
+    .digest("hex");
+
+  const a = Buffer.from(received, "hex");
+  const b = Buffer.from(expected, "hex");
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
+}
+```
+
+Use the raw request body bytes. Re-serializing JSON changes the signature.
+
+<Warning>
+  Outbound webhooks pause while the phone number owner's plan is expired. They resume after the plan is active again. Delete a subscription with `DELETE /v1/webhooks/{id}`. A missing subscription still returns success so a turned-off Zap or scenario can disconnect cleanly.
+</Warning>

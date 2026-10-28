@@ -1,0 +1,32 @@
+---
+title: "Authentication"
+description: "Send a GreenTick API key as a Bearer token and check that the key works."
+keywords: ["API key", "Bearer", "gt_live", "authentication"]
+---
+
+Create the key under **Developer** in the dashboard. The value starts with `gt_live_`. Send it on every request except `GET /health` and `GET /openapi.json`.
+
+## Header
+
+```bash
+curl "https://api.greentick.ai/v1/api-key" \
+  --header "Authorization: Bearer gt_live_YOUR_API_KEY"
+```
+
+A valid key returns `success: true`, the key name, and the account timezone. Use that timezone when you schedule a template without an offset in `scheduledAt`.
+
+The Bearer scheme is required. A bare `gt_live_…` value, or a Firebase login token, is rejected with `401` and code `UNAUTHORIZED`.
+
+## Errors
+
+| Status | Code | Meaning |
+| --- | --- | --- |
+| 401 | `UNAUTHORIZED` | Missing Bearer token, or the key is invalid or revoked |
+| 403 | `PLAN_EXPIRED` | The plan is expired, or the Developer API is not on the plan |
+| 429 | | Write rate limit. Wait for the `Retry-After` header |
+
+Revoke a key from **Developer** when it leaks or when someone with **Manage developer app** leaves the team. Revoked keys fail immediately. Create a new key to replace one. GreenTick cannot show the old secret again.
+
+<Warning>
+  Do not put the API key in a frontend app, a public spreadsheet cell, or a client-side WhatsApp widget. Google Sheets stores the key in the spreadsheet's document properties for the add-on. Other tools should keep it on a server.
+</Warning>

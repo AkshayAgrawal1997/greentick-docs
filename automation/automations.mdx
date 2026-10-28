@@ -1,0 +1,36 @@
+---
+title: "Automations"
+description: "Build a workflow that starts on a message, a webhook, or a contact enrollment."
+keywords: ["automations", "workflows", "drip", "webhook"]
+---
+
+An automation is a workflow on one WhatsApp number. It starts from a trigger, then sends a reply, a template, a Flow, or a catalog, and can label the contact, update an attribute, or assign the chat.
+
+Open **Automations**. Standard includes 5 automations. Premium includes unlimited automations and a setup session for advanced workflows. Starter does not include the automation builder.
+
+## Triggers
+
+| Trigger | When it runs |
+| --- | --- |
+| Message received | A customer messages this number |
+| Webhook event | Your system calls the automation's webhook URL |
+| Enroll contacts | A drip campaign enrolls a contact into this workflow |
+
+The first step must be the trigger. Conditions can check the message, a button reply, a label, an attribute, or a click-to-WhatsApp referral before the next step runs.
+
+## Publish
+
+Saving a draft does not run it. **Publish** the automation and turn it on. A webhook trigger shows a secret URL after publish. Treat that URL as a credential. Anyone who has it can start the workflow.
+
+Drip campaigns only list workflows whose trigger is **Enroll contacts**. Publish and turn the workflow on before you select it on the campaign.
+
+## What a step can do
+
+- Send text, media, buttons, a template, a published Flow, or a catalog message
+- Add or remove a label, or set an attribute
+- Assign the conversation to a teammate or the AI bot
+- Wait, then continue
+
+<Info>
+  The API can list enrollable automations and start one with `POST /v1/automations/{id}/enroll`. Webhook triggers use `POST /v1/hooks/{secret}`. Both are in the API reference.
+</Info>

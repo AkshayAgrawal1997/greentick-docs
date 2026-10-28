@@ -1,0 +1,39 @@
+---
+title: "Templates"
+description: "Create WhatsApp templates in GreenTick and wait for Meta approval before you send them."
+keywords: ["templates", "WhatsApp templates", "approval", "named variables"]
+---
+
+A template is a WhatsApp message Meta reviews before you can send it. Broadcasts, automations, and the API can only send templates that are approved.
+
+Open **Templates** in the dashboard.
+
+## Create a template
+
+<Steps>
+  <Step title="Choose the category">
+    Use **Marketing** for promotions, **Utility** for account or order updates, or **Authentication** for one-time passwords. Meta reviews each category differently.
+  </Step>
+  <Step title="Write the message">
+    Add the body, and a header, footer, or buttons when you need them. GreenTick templates use named variables, such as `customer_name`, not numbered placeholders.
+  </Step>
+  <Step title="Add samples">
+    Fill sample values for every variable. Meta uses those samples during review.
+  </Step>
+  <Step title="Submit">
+    Submit the template from the connected phone number. Status stays pending until Meta approves or rejects it. Only approved templates appear when you start a broadcast.
+  </Step>
+</Steps>
+
+## What you can include
+
+- Header text, or a header image, video, or document
+- Body text with named variables
+- Footer text on marketing and utility templates
+- Buttons: quick reply, URL, phone number, or copy code
+
+Header images can also be generated in GreenTick. The monthly allowance depends on your plan. Trial accounts get a small number of generations for the whole trial. A failed or blocked prompt does not use one.
+
+<Warning>
+  Editing an approved template submits a new version to Meta. Do not send a template from a broadcast or the API until its status is approved.
+</Warning>

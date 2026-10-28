@@ -1,0 +1,31 @@
+---
+title: "Contacts"
+description: "Add, import, export, and update the customers you message on WhatsApp."
+keywords: ["contacts", "import", "CSV", "phone number"]
+---
+
+Contacts are the people you message from the connected phone number. A contact is unique by phone number on that number's WhatsApp Business account.
+
+Open **Contacts** in the dashboard.
+
+## Add contacts
+
+- Add a contact in the dashboard and include the country code in the phone number.
+- Click **Import** to upload a file, map columns, and review the import report.
+- Click **Export** to download the current list.
+
+Imports skip or report rows that do not have a usable phone number. If a contact with the same number already exists, GreenTick keeps a single contact for that number.
+
+## Use contacts
+
+- **Broadcasts** can select saved contacts, filter them, import a file, or add numbers for that send. Contacts who opted out of broadcasts are not included.
+- **Live Chat** opens the thread for a contact when they message you, or when you send them a template.
+- Labels and custom attributes segment the list. See [Labels and attributes](/contacts/labels-and-attributes).
+
+## Phone numbers
+
+Store numbers with the country code and no spaces or symbols if you are preparing a file, for example `919876543210`. GreenTick normalizes numbers to digits, including the country code, before it saves them.
+
+<Info>
+  The same contact rules apply to the API. `POST /v1/contacts` creates contacts, and a duplicate phone number returns a conflict instead of a second record.
+</Info>

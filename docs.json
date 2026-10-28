@@ -123,7 +123,7 @@
           {
             "group": "Start here",
             "pages": [
-              "mcp/index",
+              "mcp/overview",
               "mcp/rules"
             ]
           },

@@ -1,0 +1,48 @@
+---
+title: "Templates"
+description: "Validate a template, generate its header image on GreenTick, and submit it to Meta."
+keywords: ["generate_template", "create_template", "validate_template", "MCP"]
+---
+
+Templates use named variables. Categories are `MARKETING`, `UTILITY`, and `AUTHENTICATION`. The assistant calls `get_limits` and `validate_template` before `create_template`.
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `list_templates` | Lists templates. The default status filter is `APPROVED`. Pass `PENDING`, `REJECTED`, or `all`, and optional `name` and `language`. |
+| `get_template` | Reads one template and its status. |
+| `validate_template` | Checks name, header, body, footer, buttons, and URLs. It does not call Meta. Over-limit fields return `LIMIT_EXCEEDED` for every field at once. |
+| `generate_template` | Builds a template and a landscape header image on the GreenTick server. It does not submit the template. |
+| `create_template` | Submits a template to Meta after validation. |
+| `delete_template` | Deletes a template. |
+
+`validate_template` and `create_template` take `name`, `language`, `category`, and `body`. Optional fields are `footer`, `header` (`TEXT`, `IMAGE`, `VIDEO`, or `DOCUMENT`), `buttons` (`QUICK_REPLY`, `URL`, `PHONE_NUMBER`, `COPY_CODE`), and `samples`.
+
+## Header images
+
+The assistant creates a new header image only with `generate_template`. It does not use Canva or any other image service, and it does not upload an image that was made somewhere else. `upload_media` is for a file you already have. See [Media](/mcp/media).
+
+<Steps>
+  <Step title="Ask for the website">
+    The assistant asks for the brand website before it generates, even when you did not mention a site. It does not invent a URL. It passes your URL as `brandSite`. GreenTick fetches the logo file from that site and places that file on the header. It does not draw a lookalike. The assistant does not fetch the site itself, search for a logo, or claim a redirect loop unless the tool result says the website redirected too many times.
+  </Step>
+  <Step title="Send only the prompt">
+    The first call sends `prompt` and omits `answers` and `confirmed`. The tool checks the plan and image credits before any image work. It returns the same follow-up questions the dashboard asks, with suggestions.
+  </Step>
+  <Step title="Ask every question">
+    The assistant asks each question, shows the suggestion, and waits. If the next call returns more questions, it asks those too. It sets `brandSite` to `skip` only when your reply says skip or no website, and it includes that reply in the prompt. It does not fill in answers for you.
+  </Step>
+  <Step title="Confirm, then generate">
+    Before `confirmed: true`, the assistant tells you that creating the header image takes a few minutes. It sends that message before the tool call. The confirmed call uses a new `idempotencyKey`.
+  </Step>
+  <Step title="Show the image">
+    When the result includes `headerImageUrl`, the assistant fetches that public URL, shows the image in the reply, and includes the link. The tool result does not include image bytes. A blocked prompt is rewritten and called again with a new `idempotencyKey`. A blocked prompt does not go to `create_template`.
+  </Step>
+</Steps>
+
+## After submit
+
+`create_template` sends the template to Meta. A `PENDING` result blocks `send_message`, `create_broadcast`, and `publish_workflow` until `get_template` returns `APPROVED`. A Meta error stays on `create_template`. The assistant fixes that tool. It does not send or broadcast the template.
+
+A template belongs to the WhatsApp Business account. The assistant does not say it sends from a phone number.

@@ -9,9 +9,8 @@
   },
   "favicon": "/favicon.svg",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
-    "href": "https://greentick.ai"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [
@@ -113,6 +112,34 @@
               "developers/send-messages",
               "developers/webhooks",
               "developers/integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP",
+        "icon": "robot",
+        "groups": [
+          {
+            "group": "Start here",
+            "pages": [
+              "mcp/index",
+              "mcp/rules"
+            ]
+          },
+          {
+            "group": "Tools",
+            "pages": [
+              "mcp/messages",
+              "mcp/templates",
+              "mcp/media",
+              "mcp/automations",
+              "mcp/flows",
+              "mcp/ai-bots",
+              "mcp/broadcasts",
+              "mcp/inbox",
+              "mcp/contacts",
+              "mcp/catalogs"
             ]
           }
         ]

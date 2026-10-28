@@ -1,0 +1,28 @@
+---
+title: "Catalogs and ads"
+description: "Manage catalog products and orders, and send click-to-WhatsApp conversion events."
+keywords: ["catalog", "orders", "CTWA", "conversions", "MCP"]
+---
+
+Catalogs and click-to-WhatsApp ads are on Standard and Premium. Product images must be files you already have. The assistant does not generate a product image.
+
+## Catalogs
+
+| Tool | What it does |
+| --- | --- |
+| `list_catalogs` | Lists commerce catalogs on this WhatsApp account. |
+| `list_catalog_products` | Lists products in one catalog. `limit` is at most 100. |
+| `create_catalog_product` | Creates a product. Pass `name` and an image you already have as `imageUrl` or `mediaId`. Optional `description`, `brand`, `retailerId`, `price`, `currency`, and `availability`. |
+| `update_catalog_product` | Updates one product by `productId`. On failure, the assistant fixes the named field and calls this tool again. |
+| `delete_catalog_product` | Deletes one product. |
+| `list_catalog_orders` | Lists catalog orders that arrived in chat. Optional `phoneNumberRef` and `limit` up to 100. |
+
+Name, description, and brand must fit `get_limits`. A failed `upload_media` blocks `create_catalog_product` until a complete catalog file is uploaded. Catalog file rules are on [Media](/mcp/media).
+
+Sending a catalog or product into an open chat uses the inbox tools on [Inbox](/mcp/inbox), and only after you ask.
+
+## Ads
+
+`list_ads` lists click-to-WhatsApp ads that started chats on this phone number.
+
+`send_ad_conversions` sends a conversion only after you ask. `eventName` is `QualifiedLead` or `Purchase`. `conversationIds` is 1 to 50 conversation ids. `Purchase` may include `currency` and `value`.

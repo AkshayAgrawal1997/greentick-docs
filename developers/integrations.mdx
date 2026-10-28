@@ -4,7 +4,7 @@ description: "Send WhatsApp from Google Sheets today, and see which other tools 
 keywords: ["Google Sheets", "integrations", "Zapier", "HubSpot"]
 ---
 
-Open **Integrations** in the dashboard. Google Sheets is available. HubSpot, Make, n8n, Zapier, Zoho, and the MCP server are listed as coming soon. You can still call the [Developer API](/developers/overview) from your own server.
+Open **Integrations** in the dashboard. Google Sheets is available. HubSpot, Make, n8n, Zapier, and Zoho are listed as coming soon. You can still call the [Developer API](/developers/overview) from your own server, and you can connect the [MCP server](/mcp) with an API key.
 
 ## Google Sheets
 
@@ -35,9 +35,10 @@ The Integrations page does not connect these yet:
 - n8n
 - Zapier
 - Zoho
-- MCP server for AI assistants
 
 When they ship, each one will ask for the same Developer API key and will register webhooks under **Developer → Webhooks**. Until then, use `POST /v1/messages` and [webhooks](/developers/webhooks) from your own app.
+
+The MCP server is separate from that card. Connect it with the same API key. See [MCP](/mcp).
 
 <Info>
   Pabbly is not listed in the dashboard. Use the API directly if you need a custom connection.

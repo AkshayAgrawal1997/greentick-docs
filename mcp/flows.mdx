@@ -1,0 +1,29 @@
+---
+title: "Flows"
+description: "Create, publish, send, and read submissions for a WhatsApp Flow."
+keywords: ["WhatsApp Flow", "publish_flow", "send_flow", "MCP"]
+---
+
+A Flow is a form inside WhatsApp. The assistant saves a static draft, and it publishes or sends only after you ask. Standard includes 5 Flows. Premium includes unlimited Flows. Starter does not include them.
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `validate_flow` | Checks the Flow without calling Meta. Name, screen title, heading, body, and input label must fit `get_limits`. |
+| `create_flow` | Saves a draft. A draft blocks `send_flow` until `publish_flow` succeeds. |
+| `update_flow` | Updates a draft. |
+| `list_flows` | Lists Flows on the account. |
+| `get_flow` | Reads one Flow and whether it is a draft or published. |
+| `publish_flow` | Publishes a draft. Call it only after you ask. Optional `metaPhoneNumberId` selects the number. Validation errors stay on this tool. |
+| `send_flow` | Sends a published Flow to one `to` number. `body` is required. Optional `flowCta`, `header`, and `footer`. |
+| `deprecate_flow` | Stops a published Flow from being sent again. |
+| `delete_flow` | Deletes a draft. Meta rejects delete after the Flow is published. Only after you ask. |
+| `list_flow_submissions` | Lists submissions. `limit` is at most 200. |
+| `get_flow_analytics` | Reads one Flow, including submissions and completion. Optional `recentLimit` up to 100. |
+| `get_flows_analytics` | Reads every Flow on the account. |
+| `get_flow_phone_encryption` | Reads the phone number encryption public key Flows use. |
+
+`create_flow` takes `name`, up to 5 `categories`, and `screens`. Each screen has `title`, optional `body` and `footerLabel`, and `fields`.
+
+The assistant does not call `send_flow` for a draft, and it does not publish while validation is failing.

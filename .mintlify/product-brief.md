@@ -17,7 +17,7 @@ Assumption: English is the only docs language for this site. Super-admin screens
 
 1. Create an account, connect WhatsApp, and reach the first successful send or reply.
 2. Run the core dashboard loop: contacts, approved templates, broadcasts, and live chat.
-3. Authenticate to `https://api.greentick.ai/v1`, send a template, and receive signed webhooks.
+3. Authenticate to `https://api.greentick.ai/v1`, send a template, receive signed webhooks, and connect an assistant at `https://api.greentick.ai/mcp`.
 
 ## Motivation
 

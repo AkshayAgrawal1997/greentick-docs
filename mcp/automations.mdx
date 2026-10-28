@@ -1,0 +1,31 @@
+---
+title: "Automations"
+description: "Validate, save, publish, and enroll GreenTick workflows from an assistant."
+keywords: ["workflow", "publish_workflow", "enroll_automation", "MCP"]
+---
+
+An automation is a workflow on one WhatsApp number. The assistant saves a draft first. It publishes or enrolls only after you ask.
+
+## Order of calls
+
+<Steps>
+  <Step title="Read the catalog">
+    `get_workflow_catalog` lists starter workflows. `create_workflow_from_template` copies one by `templateSlug` and `name`. The copy is a draft.
+  </Step>
+  <Step title="Validate">
+    `validate_workflow` checks the steps and does not save them. The first step must be a trigger: `message_received`, `webhook`, or `campaign_enrolled`. Name, description, text, and caption must fit `get_limits`.
+  </Step>
+  <Step title="Save the draft">
+    `create_workflow` or `update_workflow` stores the draft. A draft blocks `enroll_automation` until `publish_workflow` succeeds. `list_workflows` and `get_workflow` show draft and published status.
+  </Step>
+  <Step title="Publish">
+    `publish_workflow` runs only after you ask. A validation error stays on that tool. The assistant does not enroll the workflow to get around it.
+  </Step>
+  <Step title="Enroll">
+    `list_automations` returns published automations that can be enrolled. `enroll_automation` takes up to 100 contacts. The assistant does not enroll a draft.
+  </Step>
+</Steps>
+
+`discard_workflow_draft` drops unpublished edits. `delete_workflow` deletes the workflow and its execution history, and only after you ask. `export_workflows` exports up to 50 workflows by id. `get_workflow_analytics` reads one workflow's analytics.
+
+Drip campaigns in the dashboard only list workflows whose trigger is `campaign_enrolled`. A `message_received` workflow does not appear there.

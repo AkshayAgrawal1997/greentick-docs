@@ -1,0 +1,76 @@
+---
+title: "Rules"
+description: "Stop conditions, idempotency, rate limits, and the actions an assistant must not take on its own."
+keywords: ["MCP", "idempotency", "blockedTools", "rate limit"]
+---
+
+These are the instructions GreenTick sends with the MCP server. An assistant that ignores them will create drafts, send messages, or report a failure as a success.
+
+## Ask before a live action
+
+The assistant does not send, publish, schedule, enroll, or enable anything until you ask for that action in the conversation.
+
+| Action | Tool | What must happen first |
+| --- | --- | --- |
+| Send a WhatsApp message | `send_message` | You ask to send it. Text also needs an open 24-hour window. A template must be `APPROVED`. |
+| Schedule a template | `send_message` with `scheduledAt` | You ask to send later. The time is at least 5 minutes ahead and within 30 days. |
+| Schedule a broadcast | `schedule_broadcast` | `preview_broadcast` returned a recipient count you accept, and you ask to schedule. |
+| Publish an automation | `publish_workflow` | `validate_workflow` passed, the draft is saved, and you ask to publish. |
+| Enroll contacts | `enroll_automation` | The automation is published, and you ask to enroll. |
+| Publish a Flow | `publish_flow` | The draft is valid, and you ask to publish. |
+| Send a Flow | `send_flow` | The Flow is published, and you ask to send it. |
+| Enable a bot | `enable_ai_bot` | `test_ai_bot` succeeded, every knowledge source is ready, and you ask to enable it. |
+| Delete a workflow, Flow, or broadcast | `delete_workflow`, `delete_flow`, `delete_broadcast` | You ask to delete it. |
+
+Reading tools (`get_limits`, `list_contacts`, `get_template`, and the other `GET` tools) do not need a separate yes.
+
+## Read limits before writing text
+
+The assistant calls `get_limits` before it writes template, workflow, Flow, bot, catalog, or message text. It does not cut a field down to slip under a limit. If a field is too long, it tells you the limit and the field name.
+
+It calls `validate_template`, `validate_workflow`, or `validate_flow` before the matching create tool. Validation does not call Meta and does not save a draft.
+
+## Stop on an error
+
+The assistant stops when a tool result is an error, or when `blockedTools` is not empty.
+
+It shows you the `message`, changes the field named in the result, and calls the **same** tool again. It does not switch to a later tool that the error blocked.
+
+| `blockedTools` after this failure | The assistant must not call |
+| --- | --- |
+| `upload_media` or `get_media_guidelines` | `create_template`, `create_catalog_product` |
+| `generate_template` | `create_template` |
+| `create_template` or a template that is not approved | `send_message`, `create_broadcast`, `publish_workflow` |
+| `create_workflow` or `update_workflow` | `publish_workflow`, `enroll_automation` |
+| A Flow draft | `send_flow` until `publish_flow` succeeds |
+
+A rejected upload stays blocked until a complete file is uploaded. A cut-off file is not a media id.
+
+## Idempotency
+
+Write tools take `idempotencyKey`. GreenTick stores the response for that key, that API key, and that route.
+
+- After an error, the next attempt uses a **new** key. The same key returns the saved error.
+- A successful retry also uses a new key. Reusing the key does not run the action again.
+- `GET` tools do not use an idempotency key.
+
+## Rate limit
+
+Each API key can make 60 write calls a minute. `GET` tools are not counted. Over the limit, the tool returns `429` with code `RATE_LIMITED` and a `Retry-After` header. The assistant waits that many seconds and calls the same tool again. It does not fan the work out across other write tools.
+
+## Auth and plan errors
+
+| Status | Code | Meaning |
+| --- | --- | --- |
+| 401 | `UNAUTHORIZED` | The Bearer key is missing, invalid, or revoked |
+| 403 | `PLAN_EXPIRED` | The plan is expired, or this feature is not on the plan |
+| 403 | `FEATURE_NOT_INCLUDED` | The current plan does not include that tool |
+| 429 | `RATE_LIMITED` | The write limit was hit |
+
+The assistant does not retry `PLAN_EXPIRED` until you renew on **Manage Plan**.
+
+## Phone numbers and templates
+
+`list_phone_numbers` returns the sending lines on the account. Message, conversation, broadcast, and Flow send tools take `phoneNumberRef` when the account has more than one number. If the account has a single number, the assistant can omit it.
+
+A template belongs to the WhatsApp Business account. The assistant does not say a template sends from one phone number.

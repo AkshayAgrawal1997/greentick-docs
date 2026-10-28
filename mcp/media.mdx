@@ -1,0 +1,25 @@
+---
+title: "Media"
+description: "File types and size limits for template headers, catalogs, knowledge, and chat attachments."
+keywords: ["upload_media", "get_media_guidelines", "MCP"]
+---
+
+The assistant calls `get_media_guidelines` before it uploads a file. It does not generate a file. A header image for a new template comes only from `generate_template`. See [Templates](/mcp/templates).
+
+## What you can upload
+
+`upload_media` hosts a file you already have. `purpose` is one of:
+
+| Purpose | Allowed files |
+| --- | --- |
+| `template_header` | JPEG or PNG up to 5 MB, MP4 up to 16 MB, or PDF up to 100 MB. The sample must match the header type. Utility templates must not contain promotional copy. |
+| `catalog` | JPEG or PNG up to 8 MB, or MP4 up to 100 MB. The URL can be up to 2048 characters. |
+| `knowledge` | PDF, plain text, Markdown, or JSON up to 15 MB. |
+
+Pass a public `https` URL or one complete `base64` value up to 5 MB, plus `mimeType` and `filename` when you have them. HTML, SVG, scripts, and executables are rejected.
+
+A partial or cut-off file is rejected. That failure blocks `create_template` and `create_catalog_product` until a complete file is uploaded. The rejected upload is not a media id.
+
+## Chat attachments
+
+`send_conversation_media` sends an image, video, or PDF inside an open customer service window. Pass `mediaUrl` from `upload_media`, or a complete `mediaBase64` value. The assistant does not generate that file. Details are on [Inbox](/mcp/inbox).

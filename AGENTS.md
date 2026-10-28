@@ -29,5 +29,6 @@
 ## Content boundaries
 
 - Document the dashboard at `https://dashboard.greentick.ai` and the public API at `https://api.greentick.ai/v1`.
-- Google Sheets is the integration that is available in the dashboard. HubSpot, Make, n8n, Zapier, Zoho, and the MCP server are marked coming soon there. Explain the API they will use, and do not write install steps for tools the dashboard still labels coming soon.
+- Google Sheets is the integration that is available in the dashboard. HubSpot, Make, n8n, Zapier, and Zoho are marked coming soon there. Explain the API they will use, and do not write install steps for tools the dashboard still labels coming soon.
+- The MCP server at `https://api.greentick.ai/mcp` has its own docs tab under `mcp/`. Keep those pages aligned with `green-tick-backend/mcp/server.mjs`.
 - Do not document All accounts, Change owner, or other super-admin screens.

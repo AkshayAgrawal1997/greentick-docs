@@ -1,0 +1,36 @@
+---
+title: "Contacts"
+description: "Create and update contacts, labels, and attributes, and list phone numbers."
+keywords: ["contacts", "labels", "attributes", "phone numbers", "MCP"]
+---
+
+Contacts, labels, and attributes belong to the connected WhatsApp number. Phone numbers in `create_contacts` include the country code. A duplicate number does not create a second contact.
+
+## Contacts
+
+| Tool | What it does |
+| --- | --- |
+| `list_contacts` | Lists contacts. Extra list filters are passed through as query fields. |
+| `get_contact` | Reads one contact by id. |
+| `create_contacts` | Creates up to 100 contacts in one call. |
+| `update_contacts` | Updates up to 100 contacts in one call. |
+
+## Labels
+
+`list_labels`, `get_label`, `create_labels`, `update_label`, and `delete_label`.
+
+Deleting a label removes it from contacts. It does not delete the contacts. `create_labels` accepts up to 50 labels, each with a `name` of at most 120 characters. `update_label` changes one label.
+
+## Attributes
+
+`list_attributes`, `get_attribute`, `create_attributes`, `update_attribute`, and `delete_attribute`.
+
+Attributes are the custom fields on a contact. Define the attribute, then set its value on the contact. `create_attributes` accepts up to 50 attributes. `update_attribute` changes one attribute.
+
+## Phone numbers
+
+`list_phone_numbers` returns the sending lines on this WhatsApp Business account, including `phoneNumberRef`.
+
+Use a `phoneNumberRef` on send and list tools when the account has more than one number. A template still belongs to the WhatsApp Business account. The assistant does not describe a template as sending from one of these numbers.
+
+`get_api_key` checks the Bearer key and returns `timeZone`, which scheduling uses when you do not name a zone. See [Rules](/mcp/rules).

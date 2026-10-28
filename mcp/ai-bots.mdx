@@ -1,0 +1,25 @@
+---
+title: "AI bots"
+description: "Create a disabled bot, add knowledge, run a test, and enable it only when you ask."
+keywords: ["AI bot", "enable_ai_bot", "test_ai_bot", "MCP"]
+---
+
+A new bot stays disabled. The assistant cannot turn it on until a test succeeds and every knowledge source is ready, and only after you ask.
+
+## Tools
+
+| Tool | What it does |
+| --- | --- |
+| `get_ai_bot_catalog` | Lists models you can assign. |
+| `list_ai_bots` | Lists bots and whether each one is enabled. |
+| `create_ai_bot` | Creates a disabled bot. `agentType` is `customer_support`, `booking`, `sales`, or `custom`. Optional `systemPrompt`, `handoffMessage`, and `model`. |
+| `update_ai_bot` | Updates the bot. Updating does not enable it. |
+| `add_ai_bot_knowledge` | Adds `faq`, `url`, or `file` knowledge. FAQ uses `question` and `answer`. File and URL content is stored as text. |
+| `get_ai_bot_knowledge` | Lists sources. Status is `pending`, `processing`, `ready`, or `failed`. |
+| `test_ai_bot` | Sends one `message` to the bot. A successful test is required before enable. |
+| `enable_ai_bot` | Enables the bot after the test, after every knowledge source is `ready`, and after you ask. |
+| `delete_ai_bot` | Deletes the bot. |
+
+Name, system prompt, and handoff message must fit `get_limits`. Knowledge that is still `processing` blocks `enable_ai_bot`. The assistant waits and reads `get_ai_bot_knowledge` again. It does not enable the bot to skip that wait.
+
+A file used as knowledge follows the [Media](/mcp/media) rules for the `knowledge` purpose: PDF, plain text, Markdown, or JSON.

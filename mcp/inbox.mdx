@@ -1,0 +1,29 @@
+---
+title: "Inbox"
+description: "List conversations, assign a chat, suggest a reply, and send session media or products."
+keywords: ["conversations", "live chat", "MCP"]
+---
+
+Inbox tools read and update **Live Chat** for the connected number. Session sends work only inside the 24-hour customer service window. The assistant sends catalog and product messages only after you ask.
+
+## Read and assign
+
+| Tool | What it does |
+| --- | --- |
+| `list_conversations` | Lists threads. Pass `phoneNumberRef` when the account has more than one number. |
+| `list_conversation_messages` | Lists messages in one conversation `id`. |
+| `assign_conversation` | Assigns the thread. |
+| `suggest_reply` | Returns a suggested reply. It does not send the reply. |
+| `mark_conversation_read` | Marks the thread read. For one inbound message, use `mark_message_read` on [Messages](/mcp/messages). |
+
+## Send inside the window
+
+| Tool | Required fields | Notes |
+| --- | --- | --- |
+| `send_conversation_media` | Conversation `id`, `mediaType` of `image`, `video`, or `document` | Pass `mediaUrl` from [Media](/mcp/media) or a complete `mediaBase64`. Optional `caption`. The assistant does not generate the file. |
+| `send_catalog_message` | `id`, `body` | Sends the connected catalog. Optional `footer` and `thumbnailProductRetailerId`. |
+| `send_product_message` | `id`, `productRetailerId` | Sends one product. Optional `catalogId`, `body`, and `footer`. |
+| `send_product_list` | `id`, `body` | Multi-product list. Optional `headerText`, `footer`, `catalogId`, and up to 10 `sections`. |
+| `send_product_carousel` | `id`, `body`, `cards` | `cards` is 1 to 10 items. |
+
+To start a conversation, or to message after the window closes, use `send_message` with an approved template. See [Messages](/mcp/messages).

@@ -1,0 +1,36 @@
+---
+title: "Enable a WhatsApp AI bot with MCP"
+sidebarTitle: "Enable an AI bot"
+description: "Create a disabled WhatsApp AI bot, add knowledge, run a test, and enable it only after you ask."
+keywords: ["WhatsApp AI bot MCP", "enable_ai_bot", "test_ai_bot", "bot knowledge"]
+---
+
+A new bot stays disabled. The assistant cannot turn it on until a test succeeds, every knowledge source is ready, and you ask to enable it. Updating the bot does not enable it.
+
+## Ask this
+
+```text
+Create a disabled customer_support bot named "Shop desk" with a short system prompt that answers questions about store hours. Add this FAQ: question "What are your hours?", answer "We are open 9:00 to 18:00 local time." Then test it with "When do you close?" Do not enable it.
+```
+
+After the test looks right and knowledge is ready:
+
+```text
+Enable the Shop desk bot.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Create it disabled">
+    `get_ai_bot_catalog` lists models. `create_ai_bot` creates a disabled bot. `agentType` is `customer_support`, `booking`, `sales`, or `custom`.
+  </Step>
+  <Step title="Add knowledge and test">
+    `add_ai_bot_knowledge` adds `faq`, `url`, or `file` knowledge. `get_ai_bot_knowledge` reports `pending`, `processing`, `ready`, or `failed`. `test_ai_bot` sends one `message` to the bot. Knowledge that is still `processing` blocks enable. The assistant waits and reads the knowledge again.
+  </Step>
+  <Step title="Enable">
+    `enable_ai_bot` runs only after the test, after every source is `ready`, and after you ask.
+  </Step>
+</Steps>
+
+A knowledge file follows the [Media](/mcp/media) rules for the `knowledge` purpose: PDF, plain text, Markdown, or JSON. The tool list is on [AI bots](/mcp/ai-bots).

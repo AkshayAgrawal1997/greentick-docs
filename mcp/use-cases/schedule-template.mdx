@@ -1,0 +1,29 @@
+---
+title: "Schedule a WhatsApp template with MCP"
+sidebarTitle: "Schedule a template"
+description: "Ask an assistant to schedule an approved WhatsApp template at least 5 minutes ahead and within 30 days."
+keywords: ["schedule WhatsApp message", "scheduledAt", "MCP", "template schedule"]
+---
+
+Only an approved template can be scheduled. Session text cannot. The time has to be at least 5 minutes from now and within 30 days. A success body with `scheduled: true` is a schedule, not a delivery.
+
+## Ask this
+
+```text
+Schedule the approved template order_update in en to +14155550123 for tomorrow at 9:00 in the account timezone. Set name to "Asha" and order to "10482". Tell me the scheduled time. Do not say it was delivered.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Resolve the clock">
+    If you do not name a timezone, the assistant calls `get_api_key` and uses `timeZone`. If you name a zone, it passes an ISO offset, for example `2026-10-25T09:00:00-04:00`. A value with `Z` or an offset is that exact instant.
+  </Step>
+  <Step title="Schedule">
+    `send_message` uses `type: template` and `scheduledAt`. A past time, a time inside the next 5 minutes, or a time past 30 days is rejected. The assistant fixes `scheduledAt` and retries with a new `idempotencyKey`.
+  </Step>
+</Steps>
+
+The template must be `APPROVED`. The assistant tells you the time it will send.
+
+To stop it before it goes out, use [Cancel a scheduled message](/mcp/use-cases/cancel-scheduled-message). Rules are on [Messages](/mcp/messages).

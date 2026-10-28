@@ -1,0 +1,42 @@
+---
+title: "Send a WhatsApp Flow and read submissions with MCP"
+sidebarTitle: "Send a WhatsApp Flow"
+description: "Validate, publish, and send a WhatsApp Flow from an assistant, then read the form submissions. Starter plans do not include Flows."
+keywords: ["WhatsApp Flow MCP", "send_flow", "Flow submissions", "publish_flow"]
+---
+
+A Flow is a form inside WhatsApp. The assistant saves a static draft, and it publishes or sends only after you ask. Standard includes 5 Flows. Premium includes unlimited Flows. Starter does not include them.
+
+## Ask this
+
+```text
+Create a draft Flow named "Appointment" with one screen that asks for a preferred date. Validate it and stop. Do not publish or send it.
+```
+
+After you accept the draft:
+
+```text
+Publish the Appointment Flow and send it to +14155550123 with the body "Pick a time that works for you."
+```
+
+Later:
+
+```text
+List submissions for the Appointment Flow. Do not message those people.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Draft">
+    `validate_flow` checks the Flow without calling Meta. `create_flow` saves the draft. A draft blocks `send_flow` until `publish_flow` succeeds.
+  </Step>
+  <Step title="Publish and send">
+    `publish_flow` runs only after you ask. `send_flow` sends a published Flow to one `to` number. `body` is required.
+  </Step>
+  <Step title="Read answers">
+    `list_flow_submissions` lists submissions. `limit` is at most 200. This read does not send a follow-up.
+  </Step>
+</Steps>
+
+`delete_flow` deletes a draft. Meta rejects delete after the Flow is published. Tool fields are on [Flows](/mcp/flows).

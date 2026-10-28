@@ -1,0 +1,112 @@
+---
+title: "MCP client setup"
+sidebarTitle: "Client setup"
+description: "Add the GreenTick MCP server to Claude, Claude Code, Cursor, VS Code, or any streamable HTTP client."
+keywords: ["Claude MCP", "Cursor MCP", "VS Code MCP", "WhatsApp MCP setup", "gt_live"]
+---
+
+Use streamable HTTP against `https://api.greentick.ai/mcp`. Send the API key as `Authorization: Bearer gt_live_…` on every request. A bare key, without the `Bearer` prefix, is rejected. Do not put the key in the URL, a chat, a screenshot, or a committed file.
+
+The key is created in **Developer**. It is shown once and belongs to the WhatsApp Business account you had selected.
+
+<Warning>
+  Connect `https://api.greentick.ai/mcp`. The `/mcp` address on this docs site only searches the documentation. It cannot send WhatsApp messages.
+</Warning>
+
+## Claude Desktop
+
+Edit the Claude Desktop config and restart Claude.
+
+<Tabs>
+  <Tab title="macOS">
+    The file is `~/Library/Application Support/Claude/claude_desktop_config.json`.
+
+    ```json
+    {
+      "mcpServers": {
+        "greentick": {
+          "type": "http",
+          "url": "https://api.greentick.ai/mcp",
+          "headers": {
+            "Authorization": "Bearer gt_live_YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Windows">
+    The file is `%APPDATA%\Claude\claude_desktop_config.json`.
+
+    ```json
+    {
+      "mcpServers": {
+        "greentick": {
+          "type": "http",
+          "url": "https://api.greentick.ai/mcp",
+          "headers": {
+            "Authorization": "Bearer gt_live_YOUR_API_KEY"
+          }
+        }
+      }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Claude Code
+
+Add the server from the terminal, then start a new session:
+
+```bash
+claude mcp add --transport http greentick https://api.greentick.ai/mcp --header "Authorization: Bearer gt_live_YOUR_API_KEY"
+```
+
+## Cursor
+
+Open **Settings → MCP** and add a server, or edit `.cursor/mcp.json` in the project (or the global MCP file):
+
+```json
+{
+  "mcpServers": {
+    "greentick": {
+      "url": "https://api.greentick.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer gt_live_YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+## VS Code
+
+Create `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "greentick": {
+      "type": "http",
+      "url": "https://api.greentick.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer gt_live_YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+## Other clients
+
+Any client that speaks streamable HTTP can use the same address and header:
+
+- URL: `https://api.greentick.ai/mcp`
+- Transport: streamable HTTP
+- Header: `Authorization: Bearer gt_live_YOUR_API_KEY`
+
+## Confirm the connection
+
+Ask the assistant to call `get_api_key`. A working key returns the key name, the key prefix, and the account `timeZone`. An empty timezone means the account timezone is not set yet. The assistant uses that timezone when you schedule a template without naming a zone.
+
+Then try a read that does not send anything: [List approved templates](/mcp/use-cases/send-approved-template) starts with `list_templates`. The send itself still waits until you ask.

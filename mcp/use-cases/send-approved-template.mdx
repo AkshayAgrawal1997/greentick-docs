@@ -1,0 +1,29 @@
+---
+title: "Send an approved WhatsApp template with MCP"
+sidebarTitle: "Send an approved template"
+description: "Send a WhatsApp template that is already approved, with named variables, from Claude, Cursor, or another MCP client."
+keywords: ["send WhatsApp template MCP", "approved template", "send_message", "named variables"]
+---
+
+`send_message` with `type: template` is how an assistant starts a WhatsApp conversation, or messages someone after the 24-hour window has closed. The template must already be `APPROVED`. A template that is still pending or rejected returns `TEMPLATE_NOT_APPROVED`, and the assistant does not describe that call as delivered.
+
+## Ask this
+
+```text
+List my approved templates. Then send order_update in en to +14155550123 with the name variable set to "Asha" and the order variable set to "10482". Tell me the error if it is not approved. Do not invent variables.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read approved templates">
+    `list_templates` defaults to status `APPROVED`. The `name` and `language` on the send must match one of those rows.
+  </Step>
+  <Step title="Send">
+    `send_message` uses `type: template` and named variables such as `customer_name`. Pass `phoneNumberRef` when the account has more than one number.
+  </Step>
+</Steps>
+
+The assistant calls `send_message` only after you ask it to send. A failed send was not delivered.
+
+If you want it later, use [Schedule a template](/mcp/use-cases/schedule-template). Field rules are on [Messages](/mcp/messages).

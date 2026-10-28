@@ -48,10 +48,18 @@
     "prompt": "Search GreenTick docs"
   },
   "seo": {
+    "indexing": "navigable",
     "metatags": {
       "canonical": "https://docs.greentick.ai"
     }
   },
+  "redirects": [
+    {
+      "source": "/mcp/overview",
+      "destination": "/mcp/introduction",
+      "permanent": true
+    }
+  ],
   "navigation": {
     "tabs": [
       {
@@ -123,8 +131,34 @@
           {
             "group": "Start here",
             "pages": [
-              "mcp/overview",
+              "mcp/introduction",
+              "mcp/client-setup",
               "mcp/rules"
+            ]
+          },
+          {
+            "group": "Use cases",
+            "pages": [
+              "mcp/examples",
+              "mcp/use-cases/reply-in-open-chat",
+              "mcp/use-cases/send-approved-template",
+              "mcp/use-cases/schedule-template",
+              "mcp/use-cases/cancel-scheduled-message",
+              "mcp/use-cases/schedule-broadcast",
+              "mcp/use-cases/submit-template",
+              "mcp/use-cases/generate-template-header",
+              "mcp/use-cases/send-media-in-chat",
+              "mcp/use-cases/import-contacts",
+              "mcp/use-cases/publish-workflow",
+              "mcp/use-cases/enroll-automation",
+              "mcp/use-cases/send-whatsapp-flow",
+              "mcp/use-cases/assign-live-chat",
+              "mcp/use-cases/suggest-reply",
+              "mcp/use-cases/send-catalog-product",
+              "mcp/use-cases/add-catalog-product",
+              "mcp/use-cases/enable-ai-bot",
+              "mcp/use-cases/send-ad-conversion",
+              "mcp/use-cases/check-plan-usage"
             ]
           },
           {

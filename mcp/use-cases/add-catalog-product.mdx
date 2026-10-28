@@ -1,0 +1,27 @@
+---
+title: "Add a product to a WhatsApp catalog with MCP"
+sidebarTitle: "Add a catalog product"
+description: "Create a WhatsApp catalog product from an image you already have. The assistant does not generate the product photo."
+keywords: ["WhatsApp catalog product", "create_catalog_product", "commerce catalog", "MCP"]
+---
+
+`create_catalog_product` adds one product to a commerce catalog on the WhatsApp account. Catalogs are on Standard and Premium. The image has to be a file you already have. The assistant does not generate a product image.
+
+## Ask this
+
+```text
+Add a catalog product named "Linen shirt", price 49.00 USD, retailer id SKU-104, using this image URL: https://example.com/linen-shirt.jpg. Do not message any customer.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Check the catalog and the file rules">
+    `list_catalogs` finds the catalog. `get_limits` checks the name, description, and brand length. `get_media_guidelines` runs before an upload. Catalog images are JPEG or PNG up to 8 MB, or MP4 up to 100 MB.
+  </Step>
+  <Step title="Create the product">
+    `create_catalog_product` takes `name` and an image as `imageUrl` or `mediaId`. Optional fields are `description`, `brand`, `retailerId`, `price`, `currency`, and `availability`. A failed `upload_media` blocks this tool until a complete catalog file is uploaded.
+  </Step>
+</Steps>
+
+Sharing that product in a chat is a separate request, on [Send a catalog product](/mcp/use-cases/send-catalog-product). File rules are on [Media](/mcp/media).

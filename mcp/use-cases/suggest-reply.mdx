@@ -1,0 +1,36 @@
+---
+title: "Suggest a WhatsApp reply without sending it"
+sidebarTitle: "Suggest a reply"
+description: "Ask an assistant for a suggested WhatsApp reply in Live Chat. suggest_reply does not send the message."
+keywords: ["WhatsApp suggested reply", "suggest_reply", "Live Chat draft", "MCP"]
+---
+
+`suggest_reply` returns a suggested reply for a conversation. It does not send the reply. The message goes out only if you ask for a separate send.
+
+## Ask this
+
+```text
+Read the latest messages from +14155550123 and suggest a reply I can send. Do not send it. Show me the suggestion only.
+```
+
+If you want it sent after you read it:
+
+```text
+Send that suggestion as session text, but only if the 24-hour window is still open. Otherwise stop.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read the thread">
+    `list_conversations` and `list_conversation_messages` load the conversation. The assistant needs the conversation `id` before it can suggest a reply.
+  </Step>
+  <Step title="Suggest">
+    `suggest_reply` returns the text. The assistant shows it to you and waits.
+  </Step>
+  <Step title="Send only if you ask">
+    A later `send_message` with `type: text` is a different request. It still has to fall inside the 24-hour window.
+  </Step>
+</Steps>
+
+Assignment without a reply is [Assign a live chat](/mcp/use-cases/assign-live-chat). The tool is listed on [Inbox](/mcp/inbox).

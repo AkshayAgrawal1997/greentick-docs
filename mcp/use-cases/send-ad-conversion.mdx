@@ -1,0 +1,33 @@
+---
+title: "Send a click-to-WhatsApp conversion with MCP"
+sidebarTitle: "Send an ad conversion"
+description: "Report a QualifiedLead or Purchase conversion for click-to-WhatsApp chats. The assistant sends the event only after you ask."
+keywords: ["click to WhatsApp conversion", "CTWA", "send_ad_conversions", "QualifiedLead", "MCP"]
+---
+
+`send_ad_conversions` reports a conversion for chats that started from a click-to-WhatsApp ad. Catalogs and click-to-WhatsApp ads are on Standard and Premium. The assistant sends the event only after you ask. It does not treat a chat as a purchase on its own.
+
+## Ask this
+
+```text
+List click-to-WhatsApp ads on this number. For the conversation with +14155550123, send a QualifiedLead conversion. Do not send a Purchase, and do not message the customer.
+```
+
+For a purchase, name the amount:
+
+```text
+Send a Purchase conversion for that same conversation, currency INR, value 1499.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Find the ad chats">
+    `list_ads` lists click-to-WhatsApp ads that started chats on this phone number. `list_conversations` supplies the conversation ids. The assistant does not invent an id.
+  </Step>
+  <Step title="Send the event">
+    `send_ad_conversions` takes `eventName` of `QualifiedLead` or `Purchase`, and `conversationIds` with 1 to 50 ids. `Purchase` may include `currency` and `value`.
+  </Step>
+</Steps>
+
+This call does not send a WhatsApp message. Product messages in those chats are on [Send a catalog product](/mcp/use-cases/send-catalog-product). The tools are on [Catalogs and ads](/mcp/catalogs).

@@ -1,0 +1,27 @@
+---
+title: "Assign a WhatsApp live chat with MCP"
+sidebarTitle: "Assign a live chat"
+description: "Have an assistant find a WhatsApp conversation in Live Chat and assign it to a teammate without sending a message."
+keywords: ["assign WhatsApp chat", "Live Chat MCP", "assign_conversation", "WhatsApp inbox"]
+---
+
+`assign_conversation` changes who owns a Live Chat thread. It does not send a WhatsApp message. Use it when you want the assistant to file the chat, not to reply.
+
+## Ask this
+
+```text
+Find the open conversation with +14155550123. Assign it to the teammate named Priya and mark the thread read. Do not send a reply.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Find the thread">
+    `list_conversations` lists threads. Pass `phoneNumberRef` when the account has more than one number. `list_conversation_messages` can show the latest messages before you decide who should own it.
+  </Step>
+  <Step title="Assign and mark read">
+    `assign_conversation` takes `assigneeType` and either `assigneeId` or `assigneeLabel`. There is no tool that lists teammates, so the assistant uses the name you give as `assigneeLabel`. `mark_conversation_read` marks the thread read. For one inbound message, `mark_message_read` is on [Messages](/mcp/messages).
+  </Step>
+</Steps>
+
+A suggested reply that stays unsent is [Suggest a reply](/mcp/use-cases/suggest-reply). Sending text is [Reply in an open chat](/mcp/use-cases/reply-in-open-chat). Inbox tools are on [Inbox](/mcp/inbox).

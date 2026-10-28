@@ -1,0 +1,27 @@
+---
+title: "Generate a WhatsApp template header with MCP"
+sidebarTitle: "Generate a template header"
+description: "Ask an assistant to generate a WhatsApp template and a landscape header image from your brand website. The image is not uploaded from another tool."
+keywords: ["WhatsApp template header", "generate_template", "brand website", "MCP"]
+---
+
+`generate_template` builds a template and a landscape header image on the GreenTick server. It does not submit the template to Meta, and it does not send it. The assistant creates a new header image only with this tool. It does not use another image service, and it does not upload an image that was made somewhere else.
+
+## Ask this
+
+```text
+Generate a MARKETING template for a weekend offer. My website is https://example.com. Use the logo from that site on the header. Show me the body and the image. Do not submit it to Meta.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Ask for the website">
+    The assistant asks for the brand website before it generates, even when you did not mention a site. It does not invent a URL. It passes your URL as `brandSite`. GreenTick fetches the logo file from that site and places that file on the header. It does not draw a lookalike.
+  </Step>
+  <Step title="Generate">
+    `generate_template` returns the template and the header. The assistant shows you that result. `create_template` stays unused until you ask to submit.
+  </Step>
+</Steps>
+
+`upload_media` is for a file you already have, not for this generated header. See [Media](/mcp/media) and [Templates](/mcp/templates). Submitting the result is [Submit a template](/mcp/use-cases/submit-template).

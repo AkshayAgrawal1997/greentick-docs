@@ -1,0 +1,30 @@
+---
+title: "Send an image or PDF in a WhatsApp chat with MCP"
+sidebarTitle: "Send an image or PDF"
+description: "Upload a file you already have and send it as image, video, or PDF inside an open WhatsApp customer service window."
+keywords: ["send WhatsApp image MCP", "send PDF WhatsApp", "send_conversation_media", "upload_media"]
+---
+
+`send_conversation_media` sends an image, video, or PDF inside an open customer service window. The assistant does not generate the file. You provide a file you already have. Outside the 24-hour window, this send is rejected and the assistant uses an approved template instead.
+
+## Ask this
+
+```text
+Upload this PDF as a chat document and send it in the open conversation with +14155550123, with the caption "Invoice for order 10482". If the 24-hour window is closed, stop and tell me.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read the file rules">
+    `get_media_guidelines` runs before the upload. HTML, SVG, scripts, and executables are rejected. A partial or cut-off file is rejected and is not a media id.
+  </Step>
+  <Step title="Upload">
+    `upload_media` hosts the file. Pass a public `https` URL or one complete `base64` value up to 5 MB, plus `mimeType` and `filename` when you have them.
+  </Step>
+  <Step title="Send in the thread">
+    `send_conversation_media` takes the conversation `id`, `mediaType` of `image`, `video`, or `document`, and `mediaUrl` from the upload or a complete `mediaBase64`. The caption is optional. The assistant sends it only after you ask.
+  </Step>
+</Steps>
+
+Template header files and catalog images follow different size rules. Those are on [Media](/mcp/media). Thread tools are on [Inbox](/mcp/inbox).

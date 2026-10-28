@@ -1,0 +1,36 @@
+---
+title: "Publish a WhatsApp workflow with MCP"
+sidebarTitle: "Publish a workflow"
+description: "Copy a GreenTick starter workflow, validate the draft, and publish it only after you ask."
+keywords: ["WhatsApp automation MCP", "publish_workflow", "workflow template", "GreenTick workflow"]
+---
+
+An automation is a workflow on one WhatsApp number. The assistant saves a draft first. Publishing runs only after `validate_workflow` passes and you ask to publish. A draft cannot enroll contacts.
+
+## Ask this
+
+```text
+Show me starter workflows. Copy the one closest to a reply when a customer messages us, name it "Welcome reply", and validate it. Do not publish until I say so.
+```
+
+After you review the draft:
+
+```text
+Publish the Welcome reply workflow.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Copy a starter">
+    `get_workflow_catalog` lists starter workflows. `create_workflow_from_template` copies one by `templateSlug` and `name`. The copy is a draft.
+  </Step>
+  <Step title="Validate">
+    `validate_workflow` checks the steps and does not save them. The first step must be a trigger: `message_received`, `webhook`, or `campaign_enrolled`. Name, description, text, and caption must fit `get_limits`.
+  </Step>
+  <Step title="Publish">
+    `publish_workflow` runs only after you ask. A validation error stays on that tool. The assistant does not enroll the workflow to get around it.
+  </Step>
+</Steps>
+
+`create_workflow` and `update_workflow` store a draft you describe yourself, when you are not copying a starter. Enrollment of a published workflow is [Enroll an automation](/mcp/use-cases/enroll-automation). The call order is on [Automations](/mcp/automations).

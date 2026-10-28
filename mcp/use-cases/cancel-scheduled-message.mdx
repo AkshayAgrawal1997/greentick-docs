@@ -1,0 +1,27 @@
+---
+title: "Cancel a scheduled WhatsApp message with MCP"
+sidebarTitle: "Cancel a scheduled message"
+description: "Cancel a WhatsApp template that an assistant scheduled, before the last minute when GreenTick locks the send."
+keywords: ["cancel scheduled WhatsApp", "cancel_scheduled_message", "scheduledId", "MCP"]
+---
+
+`cancel_scheduled_message` stops one scheduled template. It takes `scheduledId` from the schedule result. GreenTick refuses the cancel in the last minute before the message sends. A cancelled schedule is not a delivery, and a schedule that was never cancelled is not a delivery either.
+
+## Ask this
+
+```text
+Show me scheduled template messages that have not been sent. Cancel the one to +14155550123 for order_update. If it is inside the last minute, tell me it can no longer be cancelled.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read the schedule id">
+    The assistant uses the `scheduledId` returned when `send_message` scheduled the template. It does not guess an id.
+  </Step>
+  <Step title="Cancel">
+    `cancel_scheduled_message` runs only after you ask to cancel. If GreenTick refuses because the send is inside the last minute, the assistant reports that and stops.
+  </Step>
+</Steps>
+
+How a schedule is created is on [Schedule a template](/mcp/use-cases/schedule-template). The tool rules are on [Messages](/mcp/messages).

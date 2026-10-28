@@ -1,0 +1,35 @@
+---
+title: "Submit a WhatsApp template to Meta with MCP"
+sidebarTitle: "Submit a template"
+description: "Validate a WhatsApp template with named variables and submit it to Meta from an MCP client. Submission is not approval."
+keywords: ["create WhatsApp template MCP", "submit template Meta", "validate_template", "MARKETING"]
+---
+
+`create_template` submits a template to Meta. It does not approve it. Meta reviews the submission, and `list_templates` with status `PENDING` is how you see that it is waiting. Only an `APPROVED` template can be sent.
+
+Categories are `MARKETING`, `UTILITY`, and `AUTHENTICATION`. Variables are named. The assistant calls `get_limits` and `validate_template` before `create_template`.
+
+## Ask this
+
+```text
+Validate a MARKETING template named order_update in en. The body uses named variables customer_name and order_id: "Hi customer_name, order order_id is confirmed." Footer is "GreenTick". Do not submit it until I say so. If a field is over the limit, tell me the field name and the limit.
+```
+
+After validation passes:
+
+```text
+Submit that template to Meta. Do not send it to any customer.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Check length">
+    `get_limits` returns the field limits. `validate_template` checks name, header, body, footer, buttons, and URLs. It does not call Meta and does not save a draft. Over-limit fields return `LIMIT_EXCEEDED` for every field at once.
+  </Step>
+  <Step title="Submit">
+    `create_template` runs only after you ask to submit. Optional `header` is `TEXT`, `IMAGE`, `VIDEO`, or `DOCUMENT`. Buttons are `QUICK_REPLY`, `URL`, `PHONE_NUMBER`, or `COPY_CODE`.
+  </Step>
+</Steps>
+
+The assistant does not shorten a field to slip under a limit. A new header image comes only from [Generate a template header](/mcp/use-cases/generate-template-header). Tool fields are on [Templates](/mcp/templates).

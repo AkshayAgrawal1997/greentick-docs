@@ -1,0 +1,27 @@
+---
+title: "Enroll contacts in a WhatsApp automation with MCP"
+sidebarTitle: "Enroll an automation"
+description: "Add up to 100 contacts to a WhatsApp workflow that is already published. Draft workflows cannot be enrolled."
+keywords: ["enroll WhatsApp automation", "enroll_automation", "workflow contacts", "MCP"]
+---
+
+`enroll_automation` adds contacts to a published automation. The assistant does not enroll a draft, and it does not enroll anyone until you ask.
+
+## Ask this
+
+```text
+List published automations. If "Welcome reply" is published, enroll +14155550123 and +14155550124. If it is still a draft, stop and tell me it has to be published first.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read published automations">
+    `list_automations` returns published automations that can be enrolled. `list_workflows` shows draft and published status if you need to tell those apart.
+  </Step>
+  <Step title="Enroll">
+    `enroll_automation` takes up to 100 contacts. The assistant calls it only after you ask, and only when the automation is published.
+  </Step>
+</Steps>
+
+Publishing the draft is a separate step, on [Publish a workflow](/mcp/use-cases/publish-workflow). Tool order is on [Automations](/mcp/automations).

@@ -1,0 +1,29 @@
+---
+title: "Reply to a WhatsApp chat with MCP"
+sidebarTitle: "Reply in an open chat"
+description: "Have an assistant read a WhatsApp thread and send session text inside the 24-hour customer service window."
+keywords: ["WhatsApp reply MCP", "24-hour window", "send_message", "session text"]
+---
+
+Session text is a free-form reply. It works only inside the 24-hour customer service window, counted from the customer's last message. Outside that window, WhatsApp rejects it and the assistant sends an approved template instead.
+
+## Ask this
+
+```text
+Find the latest open chat from +14155550123, show me the last customer message, and reply: "Thanks, we have your request and will update you today." Send that text only if the 24-hour window is still open.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Find the thread">
+    `list_conversations` finds the chat. Pass `phoneNumberRef` when the account has more than one sending number. `list_conversation_messages` reads that conversation `id`.
+  </Step>
+  <Step title="Send text">
+    After you ask it to send, `send_message` uses `type: text`, the `text` body, and `to` with the country code. GreenTick strips formatting and validates the number before it calls WhatsApp.
+  </Step>
+</Steps>
+
+Text cannot be scheduled. `scheduledAt` on a text message returns `INVALID_SCHEDULE`. A failed send was not delivered. The assistant reports the error and stops.
+
+Details are on [Messages](/mcp/messages). If the window is closed, use [Send an approved template](/mcp/use-cases/send-approved-template).

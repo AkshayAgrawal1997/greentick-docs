@@ -1,0 +1,30 @@
+---
+title: "Import WhatsApp contacts with MCP"
+sidebarTitle: "Import contacts"
+description: "Create WhatsApp contacts, labels, and custom attributes from an assistant. Phone numbers include the country code."
+keywords: ["import WhatsApp contacts", "create_contacts", "WhatsApp labels", "MCP"]
+---
+
+Contacts, labels, and attributes belong to the connected WhatsApp number. Phone numbers include the country code. A duplicate number does not create a second contact.
+
+## Ask this
+
+```text
+Create a contact for Asha at +14155550123. Add a label named VIP and a text attribute named city set to Austin. If the number already exists, update that contact instead of creating another one.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Contacts">
+    `list_contacts` checks for the number. `create_contacts` creates up to 100 contacts in one call. `update_contacts` updates up to 100 contacts in one call when the number is already there.
+  </Step>
+  <Step title="Labels">
+    `create_labels` accepts up to 50 labels. Each `name` is at most 120 characters. Deleting a label later removes it from contacts and does not delete the contacts.
+  </Step>
+  <Step title="Attributes">
+    `create_attributes` defines the custom field, up to 50 at a time. The assistant sets the value on the contact after the attribute exists.
+  </Step>
+</Steps>
+
+These writes do not send a WhatsApp message. Tool names are on [Contacts](/mcp/contacts). Putting those contacts into a published workflow is [Enroll an automation](/mcp/use-cases/enroll-automation).

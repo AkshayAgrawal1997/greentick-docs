@@ -1,0 +1,27 @@
+---
+title: "Send a WhatsApp catalog product in an open chat"
+sidebarTitle: "Send a catalog product"
+description: "Send one WhatsApp catalog product, or the whole catalog, inside an open customer service window. Standard and Premium only."
+keywords: ["WhatsApp product message", "send_product_message", "catalog message", "MCP"]
+---
+
+Catalog and product messages go out through Live Chat, and only inside the 24-hour customer service window. Catalogs are on Standard and Premium. The assistant sends them only after you ask.
+
+## Ask this
+
+```text
+List products in my catalog. In the open chat with +14155550123, send the product whose retailer id is SKU-104. Add the body "This is the one you asked about." If the chat window is closed, stop.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Find the product">
+    `list_catalogs` and `list_catalog_products` identify the catalog and the `productRetailerId`. The assistant does not invent a product id.
+  </Step>
+  <Step title="Send inside the window">
+    `send_product_message` takes the conversation `id` and `productRetailerId`. Optional fields are `catalogId`, `body`, and `footer`. `send_catalog_message` sends the connected catalog instead of one product, and it needs `id` and `body`.
+  </Step>
+</Steps>
+
+`send_product_list` and `send_product_carousel` cover several products in one message. A product that is not in the catalog yet is [Add a catalog product](/mcp/use-cases/add-catalog-product). Field limits are on [Inbox](/mcp/inbox) and [Catalogs and ads](/mcp/catalogs).

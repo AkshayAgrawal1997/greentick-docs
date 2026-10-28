@@ -1,0 +1,27 @@
+---
+title: "Check WhatsApp plan usage with MCP"
+sidebarTitle: "Check plan usage"
+description: "Read GreenTick plan limits and current usage from an assistant before you send, publish, or enroll."
+keywords: ["WhatsApp plan limits", "get_usage", "get_limits", "PLAN_EXPIRED", "MCP"]
+---
+
+`get_usage` and `get_limits` are reads. They do not send a message or change the account. Call them before a large broadcast, a new Flow, or a template, so the assistant can tell you when a field or a feature will be rejected.
+
+## Ask this
+
+```text
+Check my plan usage and the text limits for templates and workflows. Do not send, publish, or create anything. If the plan is expired, say so and stop.
+```
+
+## What the assistant calls
+
+<Steps>
+  <Step title="Read usage and limits">
+    `get_api_key` confirms the key and the account timezone. `get_usage` returns usage for messages, AI tokens, automations, Flows, and bots. `get_limits` returns the field limits the assistant must respect before it writes template, workflow, Flow, bot, catalog, or message text.
+  </Step>
+  <Step title="Stop on plan errors">
+    `PLAN_EXPIRED` means the plan is expired. `FEATURE_NOT_INCLUDED` means this plan does not include that tool. The assistant does not retry `PLAN_EXPIRED` until you renew on **Manage Plan**.
+  </Step>
+</Steps>
+
+Write calls are also capped at 60 a minute per API key. That limit, and the error codes, are on [Rules](/mcp/rules).

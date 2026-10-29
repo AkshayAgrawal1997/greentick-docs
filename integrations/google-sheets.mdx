@@ -1,0 +1,79 @@
+---
+title: "Google Sheets"
+description: "Send approved WhatsApp templates automatically when a row is added, a status changes, or a date arrives in your sheet."
+keywords:
+  - "Google Sheets"
+  - "add-on"
+  - "spreadsheet"
+  - "automation"
+  - "Google Forms"
+---
+
+The Google Workspace add-on **WhatsApp Message Automation: GreenTick** watches your sheet and sends an approved template to the phone number in a row when a rule fires. Use it for order confirmations, shipping updates, payment reminders, appointment reminders, and lead follow-ups. No code is needed.
+
+## Before you start
+
+- A GreenTick account with an API key from **Developer**.
+- A WhatsApp Business number connected to GreenTick. See [Connect WhatsApp](/connect-whatsapp).
+- At least one approved [template](/messaging/templates).
+- A Google Sheet with a header row and one column of phone numbers that include the country code.
+
+## Set up a rule
+
+<Steps>
+  <Step title="Install the add-on">
+    Install [WhatsApp Message Automation: GreenTick](https://workspace.google.com/marketplace/app/whatsapp_message_automation_greentick/938755551469) from Google Workspace Marketplace. In your sheet, open **Extensions → Add-ons → WhatsApp Message Automation: GreenTick → Open automations**. The sidebar lists your columns by their header names, so give each column a clear heading such as Name, Phone, and Order ID.
+  </Step>
+  <Step title="Connect your GreenTick account">
+    Paste your `gt_live_…` key into **API key** and click **Save and continue**. The sidebar also has a **Get an API key** link. The key is stored in that spreadsheet only, and you can change or remove it later.
+  </Step>
+  <Step title="Add a rule">
+    The sidebar shows **Connected** and an empty **Rules** list. Click **Add rule**.
+  </Step>
+  <Step title="Choose when to send">
+    Name the rule, pick the **Sheet** (worksheet) to watch, and choose **Send when**. For a column change, set **Column to watch** (for example, Status) and **Value that should match** (for example, Shipped). Leave the value blank to send on any new value in that column.
+  </Step>
+  <Step title="Pick a template and map columns">
+    Choose an approved template. Select the **WhatsApp number column**, then pick a column for each template variable, for example Name for `name` and Order ID for `order_id`. Click **Save rule**.
+
+    Media headers (image, video, or document) use the approved template sample. Dynamic button links and copy-code buttons can be filled from a column.
+  </Step>
+  <Step title="Turn the rule on">
+    Check that the switch beside the rule shows **Active**. Turn it off at any time to pause the rule. When the rule fires, **Recent sends** logs the number, the rule name with the row, and the result.
+  </Step>
+</Steps>
+
+## Triggers
+
+| Send when | What it does | Good for |
+| --- | --- | --- |
+| A new row is added | Sends to the phone number in each new row, using values from that row | Order confirmations, new lead follow-up, sign-up confirmations |
+| A column changes | Sends when a value in the watched column changes | Shipped or delivered updates, paid or overdue status, booking and ticket status |
+| A date column is today | Sends on the date stored in that row | Appointment reminders, renewals, invoice due dates |
+| Schedule | Sends daily or weekly at the hour you choose to rows that match a filter | Weekly reminders |
+| Google Form submit | Sends when someone submits your Google Form | Instant replies to form leads |
+
+A rule sends one template. If Shipped and Paid need different messages, create a rule and template for each. A dropdown in the status column keeps values spelled the same way.
+
+To remind someone the day before an appointment, add a reminder date column with a formula such as `=B2-1`, where B2 holds the appointment date, and point a **date column is today** rule at it. Store real dates in the column, not text.
+
+## How sending works
+
+- Duplicate protection: the same row is not messaged twice for the same event.
+- For a **new row** rule, rows that already existed when you saved the rule are not sent.
+- The add-on only reads your sheet. It never writes send results back into cells. Delivery status and customer replies show in **Live Chat**.
+- A spreadsheet can have up to 20 rules, each with its own on/off switch.
+- If the plan expires, GreenTick turns every rule off and keeps the key. After you renew, set the rules back to **Active**.
+- The add-on works with Google Sheets only. For an Excel file, upload the .xlsx to Google Drive, open it with Google Sheets, choose **File → Save as Google Sheets**, and set up rules on that copy.
+
+<Warning>
+  A phone number in a spreadsheet is not consent. Only add customers who opted in to WhatsApp messages from you, for the kind of message the rule sends. See Meta's guidance on [getting opt-in](https://developers.facebook.com/documentation/business-messaging/whatsapp/getting-opt-in).
+</Warning>
+
+## Video walkthrough
+
+<Frame>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/EDiRcQ-TrL0" title="Google Sheets and GreenTick walkthrough" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+</Frame>
+
+The full written walkthrough with screenshots is on [greentick.ai](https://greentick.ai/google-sheets-whatsapp-integration/). For API keys and other tools on the Integrations page, see [Developer integrations](/developers/integrations).

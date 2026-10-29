@@ -104,6 +104,13 @@
             ]
           },
           {
+            "group": "Integrations",
+            "pages": [
+              "integrations/click-to-chat-widget",
+              "integrations/google-sheets"
+            ]
+          },
+          {
             "group": "Account",
             "icon": "users",
             "pages": [

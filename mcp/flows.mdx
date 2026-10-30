@@ -18,7 +18,7 @@ A Flow is a form inside WhatsApp. The assistant saves a static draft, and it pub
 | `publish_flow` | Publishes a draft. Call it only after you ask. Optional `metaPhoneNumberId` selects the number. Validation errors stay on this tool. |
 | `send_flow` | Sends a published Flow to one `to` number. `body` is required. Optional `flowCta`, `header`, and `footer`. |
 | `deprecate_flow` | Stops a published Flow from being sent again. |
-| `delete_flow` | Deletes a draft. Meta rejects delete after the Flow is published. Only after you ask. |
+| `delete_flow` | Deletes a draft. A published Flow returns "Published flows can't be deleted, deprecate it instead". Only after you ask. |
 | `list_flow_submissions` | Lists submissions. `limit` is at most 200. |
 | `get_flow_analytics` | Reads one Flow, including submissions and completion. Optional `recentLimit` up to 100. |
 | `get_flows_analytics` | Reads every Flow on the account. |
@@ -41,7 +41,7 @@ Field `type` matches the dashboard builder:
 | `rich_text` | Formatted text. That screen can contain only rich text. |
 | `embedded_link` | A link. `url` must be `https`. |
 | `navigation_list` | Links to other screens. `items[].navigateTo` is a 1-based screen number. That screen cannot be last. |
-| `switch`, `if` | Show different text from an earlier answer. `if` uses `condition`, `then`, and optional `else`. |
+| `switch`, `if` | Show or hide components from an earlier answer. `if` uses `condition`, `then`, and optional `else`. Put inputs in `then.fields`, for example a date picker when a Yes/No answer is Yes. `heading` and `body` still show text. `switch` cases are `{ key, fields }` or `{ key, heading, body }`. The Submit button sends every answer. Choice answers are stored as their labels. |
 
 `helperText` is the line under a field. Set `required: true` when the answer is required. Do not send screen ids.
 

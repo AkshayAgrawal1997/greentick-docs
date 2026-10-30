@@ -12,7 +12,8 @@ Inbox tools read and update **Live Chat** for the connected number. Session send
 | --- | --- |
 | `list_conversations` | Lists threads. `phoneNumberRef` is optional when the account has one number. `cursor` and `limit` page the list. An unsaved number has `contact` null. |
 | `list_conversation_messages` | Lists messages in one conversation `id`. `before`, `after`, and `limit` page the thread. A document caption is `text` and `caption`. `fileName` is the PDF name. |
-| `list_teammates` | Lists people and teams. `assigneeType` is `unassigned`, `user`, `bot`, or `team`. |
+| `list_teammates` | Lists people. Ids and the team list are on [Team](/mcp/team). |
+| `list_teams` | Lists team ids. See [Team](/mcp/team). |
 | `assign_conversation` | Assigns the thread. `user` uses `teammates[].id`. `team` uses `teams[].id`. `bot` uses an id from `list_ai_bots`. |
 | `suggest_reply` | Suggests a reply to the customer's latest message. Uses the number's enabled bot even when the chat is unassigned. It does not send the reply. |
 | `mark_conversation_read` | Marks the thread read. For one inbound message, use `mark_message_read` on [Messages](/mcp/messages). |

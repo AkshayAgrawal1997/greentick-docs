@@ -192,6 +192,7 @@
               "mcp/ai-bots",
               "mcp/broadcasts",
               "mcp/inbox",
+              "mcp/team",
               "mcp/contacts",
               "mcp/catalogs"
             ]

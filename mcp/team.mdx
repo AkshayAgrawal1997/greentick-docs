@@ -1,0 +1,21 @@
+---
+title: "Team"
+description: "List teammate and team ids, then assign a Live Chat conversation to a person or a team."
+keywords: ["team", "teammates", "list_teammates", "list_teams", "MCP"]
+---
+
+## Team
+
+Team tools return the ids `assign_conversation` needs. A person uses `assigneeType` `user`. A team uses `assigneeType` `team`. A bot id still comes from [AI bots](/mcp/ai-bots).
+
+| Tool | What it does |
+| --- | --- |
+| `list_teammates` | Lists people. Pass `teammates[].id` with `assigneeType` `user`. The owner id is an email. A member id is that person's user id. The same call also includes `teams[].id`. |
+| `list_teams` | Lists teams only. Pass `teams[].id` with `assigneeType` `team`. |
+| `assign_conversation` | Assigns one conversation. `assigneeType` is `unassigned`, `user`, `bot`, or `team`. `unassigned` does not need an id. |
+
+`phoneNumberRef` is optional when the account has one number. Use the ref from `list_phone_numbers` when it has more than one.
+
+An invalid `assigneeType` returns those four values. Do not invent a person id or a team id. Call the list tool first.
+
+How to assign a thread is [Assign a live chat](/mcp/use-cases/assign-live-chat). The rest of Live Chat is [Inbox](/mcp/inbox).

@@ -36,12 +36,12 @@ Field `type` matches the dashboard builder:
 | `date`, `calendar` | A date. Optional `minDate` and `maxDate` are `YYYY-MM-DD`. |
 | `optin` | A consent checkbox. |
 | `photo`, `document` | An upload. One upload per screen. |
-| `heading`, `subheading`, `body`, `caption` | Read-only text. These are not inputs. |
+| `heading`, `subheading`, `body`, `caption` | Read-only text. These are not inputs. The screen title is the header, so do not repeat it as a heading. A caption is one line: put the words in `label` only. |
 | `image`, `image_carousel` | A picture. `src` is base64. |
 | `rich_text` | Formatted text. That screen can contain only rich text. |
 | `embedded_link` | A link. `url` must be `https`. |
 | `navigation_list` | Links to other screens. `items[].navigateTo` is a 1-based screen number. That screen cannot be last. |
-| `switch`, `if` | Show or hide components from an earlier answer. `if` uses `condition`, `then`, and optional `else`. Put inputs in `then.fields`, for example a date picker when a Yes/No answer is Yes. `heading` and `body` still show text. `switch` cases are `{ key, fields }` or `{ key, heading, body }`. The Submit button sends every answer. Choice answers are stored as their labels. |
+| `switch`, `if` | Show or hide components from an earlier answer. Put the switch or if in `fields` directly under the input it describes. It renders above Next or Submit. `if` uses `condition`, `then`, and optional `else`. Put inputs in `then.fields`, for example a date picker when a Yes/No answer is Yes. A caption in a branch is `{ fields: [{ type: "caption", label: "..." }] }` and is not also sent as body. `switch` cases are `{ key, fields }` or `{ key, heading, body }`. The Submit button sends every answer. Choice answers are stored as their labels. |
 
 `helperText` is the line under a field. Set `required: true` when the answer is required. Do not send screen ids.
 

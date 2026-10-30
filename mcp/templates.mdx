@@ -17,7 +17,7 @@ Templates use named variables. Categories are `MARKETING`, `UTILITY`, and `AUTHE
 | `create_template` | Submits a template to Meta after validation. |
 | `delete_template` | Deletes a template. |
 
-`validate_template` and `create_template` take `name`, `language`, `category`, and `body`. Optional fields are `footer`, `header` (`TEXT`, `IMAGE`, `VIDEO`, or `DOCUMENT`), `buttons` (`QUICK_REPLY`, `URL`, `PHONE_NUMBER`, `COPY_CODE`), and `samples`.
+`validate_template` and `create_template` use the same fields as the create-template form: name, category, language, header, body, sample content, footer, and buttons. If the customer has not chosen one, the tool returns `needsInput` and the assistant asks. It does not apply Marketing, English (US), a text header, or “Reply STOP to unsubscribe” unless the customer accepts that choice. Header choices are None, Text, Image, Video, and Document. Button choices are URL, phone, copy code, Flow, catalog, single product, multi product, and quick reply. An empty `buttons` array means no buttons. An empty `footer` means no footer. `header.format` `NONE` means no header.
 
 ## Header images
 

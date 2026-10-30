@@ -23,7 +23,7 @@ Upload this PDF as a chat document and send it in the open conversation with +14
     `upload_media` hosts the file. Pass a public `https` URL or one complete `base64` value up to 5 MB, plus `mimeType` and `filename` when you have them.
   </Step>
   <Step title="Send in the thread">
-    `send_conversation_media` takes the conversation `id`, `mediaType` of `image`, `video`, or `document`, and `mediaUrl` from the upload or a complete `mediaBase64`. The caption is optional. The assistant sends it only after you ask.
+    `send_conversation_media` takes the conversation `id`, `mediaType` of `image`, `video`, or `document`, and `mediaUrl` from the upload or a complete `mediaBase64`. A public URL is sent as a link. The caption is optional. The assistant sends it only after you ask, and only while `sessionExpiresAt` from `list_conversations` is still in the future.
   </Step>
 </Steps>
 

@@ -23,7 +23,7 @@ Schedule that broadcast for Friday at 10:00 in the account timezone.
 
 <Steps>
   <Step title="Draft">
-    `create_broadcast` takes `templateName` and `language`. The template must already be `APPROVED`. The result is a `PENDING` draft and does not send. Pass `label` with one name from `list_labels`, or `labels` for several. Phone numbers are optional when a label is set. For each placeholder, ask whether it is the same value for everyone or comes from a contact field. If it comes from a contact, also ask what to do when that field is empty: send a default value, or don't send to that contact. A value the customer already gave does not need to be asked again. For a media header, ask whether to use the template sample or a different file. Pass `phoneNumberRef` when the account has more than one number.
+    `create_broadcast` takes `templateName` and `language`. The template must already be `APPROVED`. The result is a `PENDING` draft and does not send. Pass label ids in `labelIds` as an array from `list_labels`, or a name in `label` or `labels`. Ids and names can be sent together. Phone numbers are optional when a label is set. For each placeholder, ask whether it is the same value for everyone or comes from a contact field. If it comes from a contact, also ask what to do when that field is empty: send a default value, or don't send to that contact. A value the customer already gave does not need to be asked again. For a media header, ask whether to use the template sample or a different file. Pass `phoneNumberRef` when the account has more than one number.
   </Step>
   <Step title="Preview">
     `preview_broadcast` counts recipients. The assistant shows you that count. `schedule_broadcast` stays blocked until you accept it.

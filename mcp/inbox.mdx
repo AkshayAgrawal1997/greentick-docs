@@ -13,7 +13,7 @@ Inbox tools read and update **Live Chat** for the connected number. Session send
 | `list_conversations` | Lists threads. Pass `phoneNumberRef` when the account has more than one number. |
 | `list_conversation_messages` | Lists messages in one conversation `id`. |
 | `assign_conversation` | Assigns the thread. |
-| `suggest_reply` | Returns a suggested reply. It does not send the reply. |
+| `suggest_reply` | Suggests a reply to the customer's latest message. Uses the number's enabled bot even when the chat is unassigned. It does not send the reply. |
 | `mark_conversation_read` | Marks the thread read. For one inbound message, use `mark_message_read` on [Messages](/mcp/messages). |
 
 ## Send inside the window

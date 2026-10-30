@@ -13,19 +13,22 @@ Contacts, labels, and attributes belong to the connected WhatsApp number. Phone 
 | `list_contacts` | Lists contacts. Extra list filters are passed through as query fields. |
 | `get_contact` | Reads one contact by id. |
 | `create_contacts` | Creates up to 100 contacts in one call. |
-| `update_contacts` | Updates up to 100 contacts in one call. |
+| `update_contacts` | Updates up to 100 contacts in one call. Send `contacts`, an array of `{ id, labels, attributes }`. |
+| `delete_contact` | Deletes one contact by id. |
+
+`labels` is an array of label ids from `list_labels` and replaces the labels on that contact. `attributes` is an array of `{ id, value }` from `list_attributes` and replaces the custom fields on that contact. A matching label or attribute name is accepted. Do not send `label` or `attribute` as a single string.
 
 ## Labels
 
 `list_labels`, `get_label`, `create_labels`, `update_label`, and `delete_label`.
 
-Deleting a label removes it from contacts. It does not delete the contacts. `create_labels` accepts up to 50 labels, each with a `name` of at most 120 characters. `update_label` changes one label.
+Deleting a label removes it from contacts. It does not delete the contacts. `create_labels` accepts up to 50 labels, each with a `name` of at most 120 characters. `update_label` changes one label. Create, update, and delete return the changed label, not the full list.
 
 ## Attributes
 
 `list_attributes`, `get_attribute`, `create_attributes`, `update_attribute`, and `delete_attribute`.
 
-Attributes are the custom fields on a contact. Define the attribute, then set its value on the contact. `create_attributes` accepts up to 50 attributes. `update_attribute` changes one attribute.
+Attributes are the custom fields on a contact. Define the attribute, then set its value with `update_contacts`. `create_attributes` accepts up to 50 attributes. `update_attribute` changes one attribute. Create, update, and delete return the changed attribute, not the full list.
 
 ## Phone numbers
 

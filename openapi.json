@@ -1220,7 +1220,7 @@
         },
         "responses": {
           "201": {
-            "description": "Full label catalog after create",
+            "description": "Created labels",
             "content": {
               "application/json": {
                 "schema": {
@@ -1331,7 +1331,7 @@
         },
         "responses": {
           "200": {
-            "description": "Full label catalog after update"
+            "description": "Updated label"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -1364,7 +1364,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Full label catalog after delete"
+            "description": "Deleted label"
           },
           "404": {
             "description": "Label not found"
@@ -1471,7 +1471,7 @@
         },
         "responses": {
           "201": {
-            "description": "Full attribute catalog after create",
+            "description": "Created attributes",
             "content": {
               "application/json": {
                 "schema": {
@@ -1582,7 +1582,7 @@
         },
         "responses": {
           "200": {
-            "description": "Full attribute catalog after update"
+            "description": "Updated attribute"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -1615,7 +1615,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Full attribute catalog after delete"
+            "description": "Deleted attribute"
           },
           "404": {
             "description": "Attribute not found"

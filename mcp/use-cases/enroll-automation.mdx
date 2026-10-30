@@ -5,7 +5,7 @@ description: "Add up to 100 contacts to a WhatsApp workflow that is already publ
 keywords: ["enroll WhatsApp automation", "enroll_automation", "workflow contacts", "MCP"]
 ---
 
-`enroll_automation` adds contacts to a published automation. The assistant does not enroll a draft, and it does not enroll anyone until you ask.
+`enroll_automation` adds up to 100 contacts to a published automation that is switched on. Pass `contacts`, each with `to` and `phoneNumberRef`. The assistant does not enroll a draft, and it does not enroll anyone until you ask. A draft says the workflow is a draft. A published workflow that is switched off says it is switched off. `publish_workflow` switches a workflow on. `set_workflow_active` can switch it off or back on.
 
 ## Ask this
 
@@ -20,7 +20,7 @@ List published automations. If "Welcome reply" is published, enroll +14155550123
     `list_automations` returns published automations that can be enrolled. `list_workflows` shows draft and published status if you need to tell those apart.
   </Step>
   <Step title="Enroll">
-    `enroll_automation` takes up to 100 contacts. The assistant calls it only after you ask, and only when the automation is published.
+    `enroll_automation` takes `contacts`, up to 100 items of `{ to, phoneNumberRef }`. The assistant calls it only after you ask, and only when the automation is published and switched on.
   </Step>
 </Steps>
 

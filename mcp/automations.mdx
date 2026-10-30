@@ -19,10 +19,10 @@ An automation runs on every WhatsApp number on the account. Do not attach a phon
     `create_workflow` or `update_workflow` stores the draft. A draft blocks `enroll_automation` until `publish_workflow` succeeds. `list_workflows` and `get_workflow` show draft and published status.
   </Step>
   <Step title="Publish">
-    `publish_workflow` runs only after you ask. A validation error stays on that tool. The assistant does not enroll the workflow to get around it.
+    `publish_workflow` runs only after you ask, and it switches the workflow on. Pass `isActive: false` to publish it and leave it off. `set_workflow_active` switches a published workflow on or off. A validation error stays on `publish_workflow`. The assistant does not enroll the workflow to get around it.
   </Step>
   <Step title="Enroll">
-    `list_automations` returns published automations that can be enrolled. `enroll_automation` takes up to 100 contacts. The assistant does not enroll a draft.
+    `list_automations` returns published automations that are switched on. `enroll_automation` takes `contacts`, up to 100 items of `{ to, phoneNumberRef }`. A draft says the workflow is a draft. A published workflow that is switched off says it is switched off.
   </Step>
 </Steps>
 

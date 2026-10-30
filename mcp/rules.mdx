@@ -15,8 +15,8 @@ The assistant does not send, publish, schedule, enroll, or enable anything until
 | Send a WhatsApp message | `send_message` | You ask to send it. Text also needs an open 24-hour window. A template must be `APPROVED`. |
 | Schedule a template | `send_message` with `scheduledAt` | You ask to send later. The time is at least 5 minutes ahead and within 30 days. |
 | Schedule a broadcast | `schedule_broadcast` | `preview_broadcast` returned a recipient count you accept, and you ask to schedule. |
-| Publish an automation | `publish_workflow` | `validate_workflow` passed, the draft is saved, and you ask to publish. |
-| Enroll contacts | `enroll_automation` | The automation is published, and you ask to enroll. |
+| Publish an automation | `publish_workflow` | `validate_workflow` passed, the draft is saved, and you ask to publish. Publishing switches it on. |
+| Enroll contacts | `enroll_automation` | The automation is published and switched on, and you ask to enroll. Pass `contacts`, up to 100. |
 | Publish a Flow | `publish_flow` | The draft is valid, and you ask to publish. |
 | Send a Flow | `send_flow` | The Flow is published, and you ask to send it. |
 | Enable a bot | `enable_ai_bot` | `test_ai_bot` succeeded, every knowledge source is ready, and you ask to enable it. |

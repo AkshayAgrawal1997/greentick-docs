@@ -12,11 +12,11 @@ A new bot stays disabled. The assistant cannot turn it on until a test succeeds 
 | --- | --- |
 | `get_ai_bot_catalog` | Lists models you can assign. |
 | `list_ai_bots` | Lists bots and whether each one is enabled. |
-| `create_ai_bot` | Creates a disabled bot. `agentType` is `customer_support`, `booking`, `sales`, or `custom`. Optional `systemPrompt`, `handoffMessage`, and `model`. |
-| `update_ai_bot` | Updates the bot. Updating does not enable it. |
-| `add_ai_bot_knowledge` | Adds `faq`, `url`, or `file` knowledge. FAQ uses `question` and `answer`. File and URL content is stored as text. |
+| `create_ai_bot` | Creates a disabled bot. Ask which catalog model to use and pass that id as `model`. Do not guess a provider. `agentType` is `customer_support`, `booking`, `sales`, or `custom`. Ask before adding `systemPrompt` or `handoffMessage`. |
+| `update_ai_bot` | Updates the bot. Pass `model` only when the customer wants a different catalog model. Updating does not enable it. |
+| `add_ai_bot_knowledge` | Adds `faq`, `url`, or `file` knowledge. Ask which kind. FAQ uses `question` and `answer`. A website uses `url`. File and URL content is stored as text. |
 | `get_ai_bot_knowledge` | Lists sources. Status is `pending`, `processing`, `ready`, or `failed`. |
-| `test_ai_bot` | Sends one `message` to the bot. A successful test is required before enable. |
+| `test_ai_bot` | Sends one `message` to the bot. `sourceUrls` lists website pages used in the answer. A successful test is required before enable. |
 | `enable_ai_bot` | Enables the bot after the test, after every knowledge source is `ready`, and after you ask. |
 | `delete_ai_bot` | Deletes the bot. |
 

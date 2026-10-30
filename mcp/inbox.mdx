@@ -10,9 +10,10 @@ Inbox tools read and update **Live Chat** for the connected number. Session send
 
 | Tool | What it does |
 | --- | --- |
-| `list_conversations` | Lists threads. Pass `phoneNumberRef` when the account has more than one number. |
-| `list_conversation_messages` | Lists messages in one conversation `id`. |
-| `assign_conversation` | Assigns the thread. |
+| `list_conversations` | Lists threads. `phoneNumberRef` is optional when the account has one number. `cursor` and `limit` page the list. An unsaved number has `contact` null. |
+| `list_conversation_messages` | Lists messages in one conversation `id`. `before`, `after`, and `limit` page the thread. A document caption is `text` and `caption`. `fileName` is the PDF name. |
+| `list_teammates` | Lists people and teams. `assigneeType` is `unassigned`, `user`, `bot`, or `team`. |
+| `assign_conversation` | Assigns the thread. `user` uses `teammates[].id`. `team` uses `teams[].id`. `bot` uses an id from `list_ai_bots`. |
 | `suggest_reply` | Suggests a reply to the customer's latest message. Uses the number's enabled bot even when the chat is unassigned. It does not send the reply. |
 | `mark_conversation_read` | Marks the thread read. For one inbound message, use `mark_message_read` on [Messages](/mcp/messages). |
 
@@ -20,7 +21,7 @@ Inbox tools read and update **Live Chat** for the connected number. Session send
 
 | Tool | Required fields | Notes |
 | --- | --- | --- |
-| `send_conversation_media` | Conversation `id`, `mediaType` of `image`, `video`, or `document` | Pass `mediaUrl` from [Media](/mcp/media) or a complete `mediaBase64`. Optional `caption`. The assistant does not generate the file. |
+| `send_conversation_media` | Conversation `id`, `mediaType` of `image`, `video`, or `document` | Pass `mediaUrl` from [Media](/mcp/media) or a complete `mediaBase64`. Optional `caption`, including on a PDF. A closed window returns `WINDOW_CLOSED` before WhatsApp is called. The assistant does not generate the file. |
 | `send_catalog_message` | `id`, `body` | Sends the connected catalog. Optional `footer` and `thumbnailProductRetailerId`. |
 | `send_product_message` | `id`, `productRetailerId` | Sends one product. Optional `catalogId`, `body`, and `footer`. |
 | `send_product_list` | `id`, `body` | Multi-product list. Optional `headerText`, `footer`, `catalogId`, and up to 10 `sections`. |

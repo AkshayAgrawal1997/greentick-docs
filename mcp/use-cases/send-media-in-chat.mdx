@@ -5,7 +5,7 @@ description: "Upload a file you already have and send it as image, video, or PDF
 keywords: ["send WhatsApp image MCP", "send PDF WhatsApp", "send_conversation_media", "upload_media"]
 ---
 
-`send_conversation_media` sends an image, video, or PDF inside an open customer service window. The assistant does not generate the file. You provide a file you already have. Outside the 24-hour window, this send is rejected and the assistant uses an approved template instead.
+`send_conversation_media` sends an image, video, or PDF inside an open customer service window. The assistant does not generate the file. You provide a file you already have. A closed window returns `WINDOW_CLOSED` before WhatsApp is called, and the assistant uses an approved template instead. A PDF caption is stored with the message and sent to WhatsApp.
 
 ## Ask this
 
@@ -23,7 +23,7 @@ Upload this PDF as a chat document and send it in the open conversation with +14
     `upload_media` hosts the file. Pass a public `https` URL or one complete `base64` value up to 5 MB, plus `mimeType` and `filename` when you have them.
   </Step>
   <Step title="Send in the thread">
-    `send_conversation_media` takes the conversation `id`, `mediaType` of `image`, `video`, or `document`, and `mediaUrl` from the upload or a complete `mediaBase64`. A public URL is sent as a link. The caption is optional. The assistant sends it only after you ask, and only while `sessionExpiresAt` from `list_conversations` is still in the future.
+    `send_conversation_media` takes the conversation `id`, `mediaType` of `image`, `video`, or `document`, and `mediaUrl` from the upload or a complete `mediaBase64`. A public URL is sent as a link. The caption is optional for an image, a video, and a PDF. A closed window is refused before the file is sent. The assistant sends it only after you ask.
   </Step>
 </Steps>
 

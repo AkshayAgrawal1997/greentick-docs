@@ -17,10 +17,13 @@ Find the open conversation with +14155550123. Assign it to the teammate named Pr
 
 <Steps>
   <Step title="Find the thread">
-    `list_conversations` lists threads. Pass `phoneNumberRef` when the account has more than one number. `list_conversation_messages` can show the latest messages before you decide who should own it.
+    `list_conversations` lists threads. `phoneNumberRef`, `cursor`, and `limit` are in the schema. `phoneNumberRef` is optional when the account has one number. `list_conversation_messages` can show the latest messages before you decide who should own it. `before` and `limit` page that thread.
+  </Step>
+  <Step title="Choose who owns it">
+    `list_teammates` returns people and teams. `assigneeType` is `unassigned`, `user`, `bot`, or `team`. Pass `teammates[].id` when the type is `user`, or `teams[].id` when the type is `team`. For a bot, use an id from `list_ai_bots`.
   </Step>
   <Step title="Assign and mark read">
-    `assign_conversation` takes `assigneeType` and either `assigneeId` or `assigneeLabel`. There is no tool that lists teammates, so the assistant uses the name you give as `assigneeLabel`. `mark_conversation_read` marks the thread read. For one inbound message, `mark_message_read` is on [Messages](/mcp/messages).
+    `assign_conversation` takes `assigneeType` and `assigneeId`. An invalid type returns `unassigned`, `user`, `bot`, and `team`. `mark_conversation_read` marks the thread read. For one inbound message, `mark_message_read` is on [Messages](/mcp/messages).
   </Step>
 </Steps>
 

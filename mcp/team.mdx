@@ -16,6 +16,8 @@ Team tools return the ids `assign_conversation` needs. A person uses `assigneeTy
 
 `phoneNumberRef` is optional when the account has one number. Use the ref from `list_phone_numbers` when it has more than one.
 
-An invalid `assigneeType` returns those four values. Do not invent a person id or a team id. Call the list tool first.
+`assign_conversation` checks the id before it saves. A person who is not in `list_teammates` returns `TEAMMATE_NOT_FOUND` and the chat stays where it was. A team that is not in `list_teams` returns `TEAM_NOT_FOUND`. A successful person assignment sets `assigneeLabel` to that person's name, such as Tech Twos, not the raw id or email.
+
+An invalid `assigneeType` returns those four values. `assigneeType` in the tool schema is `unassigned`, `user`, `bot`, or `team`. Do not invent a person id or a team id. Call the list tool first.
 
 How to assign a thread is [Assign a live chat](/mcp/use-cases/assign-live-chat). The rest of Live Chat is [Inbox](/mcp/inbox).

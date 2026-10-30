@@ -11,13 +11,15 @@ Templates use named variables. Categories are `MARKETING`, `UTILITY`, and `AUTHE
 | Tool | What it does |
 | --- | --- |
 | `list_templates` | Lists templates. The default status filter is `APPROVED`. Pass `PENDING`, `REJECTED`, or `all`, and optional `name` and `language`. |
-| `get_template` | Reads one template and its status. |
-| `validate_template` | Checks name, header, body, footer, buttons, and URLs. It does not call Meta. Over-limit fields return `LIMIT_EXCEEDED` for every field at once. |
+| `get_template` | Reads one template, including its category, body, buttons, and status. |
+| `validate_template` | Checks name, header, body, footer, buttons, and URLs. It does not call Meta. A body that starts or ends with a variable is rejected. Every validation error is returned together. |
 | `generate_template` | Builds a template and a landscape header image on the GreenTick server. It does not submit the template. |
 | `create_template` | Submits a template to Meta after validation. |
 | `delete_template` | Deletes a template. |
 
-`validate_template` and `create_template` use the same fields as the create-template form: name, category, language, header, body, sample content, footer, and buttons. If the customer has not chosen one, the tool returns `needsInput` and the assistant asks. It does not apply Marketing, English (US), a text header, or “Reply STOP to unsubscribe” unless the customer accepts that choice. Header choices are None, Text, Image, Video, and Document. Button choices are URL, phone, copy code, Flow, catalog, single product, multi product, and quick reply. An empty `buttons` array means no buttons. An empty `footer` means no footer. `header.format` `NONE` means no header.
+`validate_template` and `create_template` use the same fields as the create-template form: name, category, language, header, body, sample content, footer, and buttons. If the customer has not chosen one, the tool returns `needsInput` and the assistant asks. It does not apply Marketing, English (US), a text header, or “Reply STOP to unsubscribe” unless the customer accepts that choice. Header choices are None, Text, Image, Video, and Document. Pass `header.format` `NONE` or `headerFormat` `NONE` for no header. A body cannot start or end with a variable. Button choices are URL, phone, copy code, Flow, catalog, single product, multi product, and quick reply. An empty `buttons` array means no buttons. An empty `footer` means no footer. Every over-limit field and every body rule comes back in one `LIMIT_EXCEEDED` result.
+
+`generate_template` reads `confirmed` and `brandSite` from the top level or from inside `answers`. `get_template` returns `category`, `body`, and `buttons` with the status.
 
 ## Header images
 

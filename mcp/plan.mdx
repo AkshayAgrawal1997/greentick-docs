@@ -1,0 +1,20 @@
+---
+title: "Plan"
+description: "Read the current plan, usage, billing details, and invoices. These tools do not change the plan."
+keywords: ["plan", "get_plan", "invoices", "billing", "MCP"]
+---
+
+## Plan
+
+Plan tools only read the account. They do not buy, change, pause, cancel, or pay. Those stay on **Manage Plan** in the dashboard.
+
+| Tool | What it does |
+| --- | --- |
+| `get_plan` | Reads the current plan name, status, renewal date, and what is included: messages, AI tokens, automations, Flows, bots, seats, and phone numbers, with how many are used. |
+| `get_usage` | Reads message and AI token usage for this billing period. |
+| `get_billing_info` | Reads the billing name, email, address, and tax id. It does not update them. |
+| `list_invoices` | Lists invoices. Each one has `id`, `number`, `status`, `amountDue`, `currency`, and a PDF link when Stripe has one. |
+
+`get_limits` is separate. It is the character limit for a template, workflow, Flow, bot, catalog, or message, not the plan you are on.
+
+An expired plan returns `PLAN_EXPIRED` on a write. The assistant does not retry that until you renew on **Manage Plan**. See [Check plan usage](/mcp/use-cases/check-plan-usage).

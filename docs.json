@@ -193,6 +193,7 @@
               "mcp/broadcasts",
               "mcp/inbox",
               "mcp/team",
+              "mcp/plan",
               "mcp/contacts",
               "mcp/catalogs"
             ]

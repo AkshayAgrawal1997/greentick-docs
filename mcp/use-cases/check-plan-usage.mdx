@@ -5,22 +5,22 @@ description: "Read GreenTick plan limits and current usage from an assistant bef
 keywords: ["WhatsApp plan limits", "get_usage", "get_limits", "PLAN_EXPIRED", "MCP"]
 ---
 
-`get_usage` and `get_limits` are reads. They do not send a message or change the account. Call them before a large broadcast, a new Flow, or a template, so the assistant can tell you when a field or a feature will be rejected.
+`get_plan`, `get_usage`, `get_billing_info`, and `list_invoices` are reads. They do not buy, change, pause, cancel, or pay. Call them before a large broadcast, a new Flow, or a template, so the assistant can tell you when a field or a feature will be rejected.
 
 ## Ask this
 
 ```text
-Check my plan usage and the text limits for templates and workflows. Do not send, publish, or create anything. If the plan is expired, say so and stop.
+Check my plan, usage, and latest invoices. Do not send, publish, create, or change the plan. If the plan is expired, say so and stop.
 ```
 
 ## What the assistant calls
 
 <Steps>
-  <Step title="Read usage and limits">
-    `get_api_key` confirms the key and the account timezone. `get_usage` returns usage for messages, AI tokens, automations, Flows, and bots. `get_limits` returns the field limits the assistant must respect before it writes template, workflow, Flow, bot, catalog, or message text.
+  <Step title="Read the plan">
+    `get_plan` returns the plan name, status, renewal date, and included messages, AI tokens, automations, Flows, bots, seats, and phone numbers, with how many are used. `get_usage` returns message and AI token usage. `get_billing_info` reads the billing name and address. `list_invoices` lists invoices. `get_limits` returns the field limits the assistant must respect before it writes template, workflow, Flow, bot, catalog, or message text.
   </Step>
   <Step title="Stop on plan errors">
-    `PLAN_EXPIRED` means the plan is expired. `FEATURE_NOT_INCLUDED` means this plan does not include that tool. The assistant does not retry `PLAN_EXPIRED` until you renew on **Manage Plan**.
+    `PLAN_EXPIRED` means the plan is expired. `FEATURE_NOT_INCLUDED` means this plan does not include that tool. The assistant does not retry `PLAN_EXPIRED` until you renew on **Manage Plan**. It does not buy or change the plan from a tool.
   </Step>
 </Steps>
 

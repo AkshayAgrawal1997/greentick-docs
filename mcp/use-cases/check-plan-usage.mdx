@@ -17,7 +17,7 @@ Check my plan, usage, and latest invoices. Do not send, publish, create, or chan
 
 <Steps>
   <Step title="Read the plan">
-    `get_plan` returns the plan name, status, renewal date, and included messages, AI tokens, automations, Flows, bots, seats, and phone numbers, with how many are used. `get_usage` returns message and AI token usage. `get_billing_info` reads the billing name and address. `list_invoices` lists invoices. `get_limits` returns the field limits the assistant must respect before it writes template, workflow, Flow, bot, catalog, or message text.
+    `get_plan` returns the plan name, status, renewal date, formatted price, and included messages, AI tokens, automations, Flows, bots, seats, and phone numbers, with how many are used. Seats count invited teammates and do not include the account owner. `usageHistory` includes the current period. `get_usage` returns message and AI token usage. `get_billing_info` reads the billing name and address. `list_invoices` lists invoices, including `amountPaid`, `total`, and `receiptUrl` when Stripe has a receipt. `get_limits` returns the field limits the assistant must respect before it writes template, workflow, Flow, bot, catalog, or message text.
   </Step>
   <Step title="Stop on plan errors">
     `PLAN_EXPIRED` means the plan is expired. `FEATURE_NOT_INCLUDED` means this plan does not include that tool. The assistant does not retry `PLAN_EXPIRED` until you renew on **Manage Plan**. It does not buy or change the plan from a tool.

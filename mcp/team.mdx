@@ -10,7 +10,7 @@ Team tools return the ids `assign_conversation` needs. A person uses `assigneeTy
 
 | Tool | What it does |
 | --- | --- |
-| `list_teammates` | Lists people. Pass `teammates[].id` with `assigneeType` `user`. The owner id is an email. A member id is that person's user id. The same call also includes `teams[].id`. |
+| `list_teammates` | Lists people, including the account owner. Pass `teammates[].id` with `assigneeType` `user`. The owner id is an email. A member id is that person's user id. The owner does not take a plan seat, so this list can be one person longer than `get_plan` `resourceUsage.seats.used`. The same call also includes `teams[].id`. |
 | `list_teams` | Lists teams only. Pass `teams[].id` with `assigneeType` `team`. |
 | `assign_conversation` | Assigns one conversation. `assigneeType` is `unassigned`, `user`, `bot`, or `team`. `unassigned` does not need an id. |
 

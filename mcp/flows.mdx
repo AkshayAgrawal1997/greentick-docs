@@ -13,7 +13,7 @@ A Flow is a form inside WhatsApp. The assistant saves a static draft, and it pub
 | `validate_flow` | Checks the Flow without calling Meta. Name, screen title, heading, body, and input label must fit `get_limits`. |
 | `create_flow` | Saves a draft. A draft blocks `send_flow` until `publish_flow` succeeds. |
 | `update_flow` | Updates a draft. |
-| `list_flows` | Lists Flows on the account. |
+| `list_flows` | Lists Flows on the account. Each row includes `metaFlowId`. |
 | `get_flow` | Reads one Flow and whether it is a draft or published. |
 | `publish_flow` | Publishes a draft. Call it only after you ask. Optional `metaPhoneNumberId` selects the number. Validation errors stay on this tool. |
 | `send_flow` | Sends a published Flow to one `to` number. `body` is required. Optional `flowCta`, `header`, and `footer`. |
@@ -25,5 +25,7 @@ A Flow is a form inside WhatsApp. The assistant saves a static draft, and it pub
 | `get_flow_phone_encryption` | Reads the phone number encryption public key Flows use. |
 
 `create_flow` takes `name`, up to 5 `categories`, and `screens`. Each screen has `title`, optional `body` and `footerLabel`, and `fields`.
+
+Pass `metaFlowId` from `list_flows`, `get_flow`, or `create_flow` to every later Flow tool, including `delete_flow`. It is the numeric WhatsApp Flow id, such as `4630212380592085`. `id` in those results is the same value. Do not pass a 24-character id. A 24-character id is still accepted and resolved, so an older value does not need a second call.
 
 The assistant does not call `send_flow` for a draft, and it does not publish while validation is failing.

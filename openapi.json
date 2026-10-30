@@ -2988,19 +2988,11 @@
                   },
                   "steps": {
                     "type": "array",
-                    "description": "Workflow steps. The first step must be a trigger.",
+                    "description": "Ordered steps. The first step is a trigger: message_received, webhook, or campaign_enrolled. Do not send a phone number. keyword_match takes keywords as an array of strings and matches them inside a longer message. Do not set matchPercent. Put the matching branch in then and the other branch in else. Steps after a condition that has no then or else run only when it matches. send_text uses text. A delay uses minutes, for example minutes: 6. Do not also send waitDurationMs: 60000.",
                     "items": {
                       "type": "object",
                       "additionalProperties": true
                     }
-                  },
-                  "phoneNumberRef": {
-                    "type": "string",
-                    "description": "GreenTick phone line id. Required when the account has more than one number."
-                  },
-                  "phoneNumberId": {
-                    "type": "string",
-                    "description": "Meta WhatsApp phone_number_id."
                   }
                 }
               }
@@ -3164,19 +3156,11 @@
                   },
                   "steps": {
                     "type": "array",
-                    "description": "Workflow steps. The first step must be a trigger.",
+                    "description": "Ordered steps. The first step is a trigger: message_received, webhook, or campaign_enrolled. Do not send a phone number. keyword_match takes keywords as an array of strings and matches them inside a longer message. Do not set matchPercent. Put the matching branch in then and the other branch in else. Steps after a condition that has no then or else run only when it matches. send_text uses text. A delay uses minutes, for example minutes: 6. Do not also send waitDurationMs: 60000.",
                     "items": {
                       "type": "object",
                       "additionalProperties": true
                     }
-                  },
-                  "phoneNumberRef": {
-                    "type": "string",
-                    "description": "GreenTick phone line id. Required when the account has more than one number."
-                  },
-                  "phoneNumberId": {
-                    "type": "string",
-                    "description": "Meta WhatsApp phone_number_id."
                   }
                 }
               }
@@ -3563,19 +3547,11 @@
                   },
                   "steps": {
                     "type": "array",
-                    "description": "Workflow steps. The first step must be a trigger.",
+                    "description": "Ordered steps. The first step is a trigger: message_received, webhook, or campaign_enrolled. Do not send a phone number. keyword_match takes keywords as an array of strings and matches them inside a longer message. Do not set matchPercent. Put the matching branch in then and the other branch in else. Steps after a condition that has no then or else run only when it matches. send_text uses text. A delay uses minutes, for example minutes: 6. Do not also send waitDurationMs: 60000.",
                     "items": {
                       "type": "object",
                       "additionalProperties": true
                     }
-                  },
-                  "phoneNumberRef": {
-                    "type": "string",
-                    "description": "GreenTick phone line id. Required when the account has more than one number."
-                  },
-                  "phoneNumberId": {
-                    "type": "string",
-                    "description": "Meta WhatsApp phone_number_id."
                   }
                 }
               }
@@ -3928,6 +3904,7 @@
           "Flows"
         ],
         "summary": "List flows",
+        "description": "Each flow includes metaFlowId. Pass that numeric WhatsApp Flow id to get, update, publish, deprecate, delete, send, submissions, and analytics. id in the response is the same value.",
         "operationId": "listFlows",
         "security": [
           {
@@ -4098,9 +4075,46 @@
                         },
                         "fields": {
                           "type": "array",
+                          "description": "text is one line. textarea is a multi-line answer. radio with no options is Yes/No. dropdown, radio, and checkbox need options: [{ id, title }]. Do not send screen ids.",
                           "items": {
                             "type": "object",
-                            "additionalProperties": true
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "text",
+                                  "textarea",
+                                  "dropdown",
+                                  "radio",
+                                  "checkbox",
+                                  "date",
+                                  "optin"
+                                ]
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -4230,9 +4244,46 @@
                         },
                         "fields": {
                           "type": "array",
+                          "description": "text is one line. textarea is a multi-line answer. radio with no options is Yes/No. dropdown, radio, and checkbox need options: [{ id, title }]. Do not send screen ids.",
                           "items": {
                             "type": "object",
-                            "additionalProperties": true
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "text",
+                                  "textarea",
+                                  "dropdown",
+                                  "radio",
+                                  "checkbox",
+                                  "date",
+                                  "optin"
+                                ]
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -4478,7 +4529,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "phoneNumberRef",
@@ -4566,7 +4617,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "Idempotency-Key",
@@ -4615,9 +4666,46 @@
                         },
                         "fields": {
                           "type": "array",
+                          "description": "text is one line. textarea is a multi-line answer. radio with no options is Yes/No. dropdown, radio, and checkbox need options: [{ id, title }]. Do not send screen ids.",
                           "items": {
                             "type": "object",
-                            "additionalProperties": true
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "text",
+                                  "textarea",
+                                  "dropdown",
+                                  "radio",
+                                  "checkbox",
+                                  "date",
+                                  "optin"
+                                ]
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -4642,7 +4730,7 @@
           "Flows"
         ],
         "summary": "Delete a draft flow",
-        "description": "Meta allows delete only while the Flow is a draft.",
+        "description": "Meta allows delete only while the Flow is a draft. id is metaFlowId, for example 4630212380592085.",
         "operationId": "deleteFlow",
         "security": [
           {
@@ -4706,7 +4794,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           }
         ]
       }
@@ -4780,7 +4868,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "Idempotency-Key",
@@ -4880,7 +4968,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "Idempotency-Key",
@@ -4976,7 +5064,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "limit",
@@ -5058,7 +5146,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "recentLimit",
@@ -5141,7 +5229,7 @@
             "schema": {
               "type": "string"
             },
-            "description": "Resource id"
+            "description": "WhatsApp Flow id (metaFlowId), for example 4630212380592085. A 24-character GreenTick id is accepted and resolved to that Flow id."
           },
           {
             "name": "Idempotency-Key",

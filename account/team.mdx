@@ -6,17 +6,28 @@ keywords: ["team", "invite", "seats", "permissions"]
 
 **Manage Team** shares one WhatsApp number with other people. Only the number owner can invite teammates. Standard includes 5 seats. Premium includes 15. Seats are the people invited to the number, not dashboard logins on other numbers.
 
-## Invite someone
+## Manage your team
 
 <Steps>
-  <Step title="Select the number">
-    Open **Manage Team** while the WhatsApp number you want to share is selected.
+  <Step title="Open Team Settings">
+    In your GreenTick dashboard, go to **Settings → Team Management**. This shows all current agents and their roles.
   </Step>
-  <Step title="Send the invite">
-    Enter the teammate's email and choose a role. **Admin** and **Member** are the two roles. You can also grant **Manage automations**, **Manage AI bot**, and **Manage developer app**.
+  <Step title="Invite a new agent">
+    Click **Invite Agent**. Enter their name and email address. They will receive an invite email to join your GreenTick workspace. Seats used are shown at the top of this page.
   </Step>
-  <Step title="Wait for acceptance">
-    The invite email comes from GreenTick. The membership stays pending until they accept. You can resend the email from the team list after the resend window opens.
+  <Step title="Assign roles and permissions">
+    Each agent gets a role: **Admin** (full access including settings) or **Agent** (inbox and contacts only). Admins can manage billing and team members; agents cannot.
+
+    | Role | Inbox | Broadcasts | Settings | Billing |
+    | --- | --- | --- | --- | --- |
+    | Admin | Yes | Yes | Yes | Yes |
+    | Agent | Yes | Limited | No | No |
+  </Step>
+  <Step title="Create teams (groups)">
+    Click **\+ New Team** to group agents, for example "Sales", "Support", "Billing". Conversations can then be assigned to a team rather than an individual. Useful when agents are interchangeable within a department.
+  </Step>
+  <Step title="Remove or deactivate an agent">
+    Click the three-dot menu next to an agent's name and select **Remove**. Their conversations are not deleted. They remain in the inbox and can be reassigned.
   </Step>
 </Steps>
 
@@ -27,7 +38,9 @@ A teammate only sees the numbers they were invited to. Revoking a membership rem
 </Warning>
 
 <Tip>
-  Pair the team with an [automation](/automation/automations) that assigns conversations, so chats reach the right person in [Live Chat](/messaging/live-chat) without manual triage.
+  **Use Automations to auto-assign**
+
+  Pair team setup with an [Automation](/automation/automations) rule, e.g., any conversation starting with "billing" is auto-assigned to the Billing team. Saves manual triage time.
 </Tip>
 
 The full written walkthrough is on [greentick.ai](https://greentick.ai/add-team-members-to-whatsapp/).

@@ -1,7 +1,7 @@
 ---
-title: "Add a payment method"
+title: "How to Add a Payment Method on Meta for WhatsApp API"
 sidebarTitle: "Payment method"
-description: "Add a card in Meta so template messages and broadcasts can send."
+description: "Until you add a payment method to Meta Business Suite, your broadcasts will fail. This guide walks through adding your card, entering billing info, and removing or switching cards."
 keywords:
   - "payment method"
   - "Meta billing"
@@ -9,46 +9,39 @@ keywords:
   - "WhatsApp API"
 ---
 
-Meta bills template messages to the WhatsApp Business account. Until the account has a payment method, business-initiated templates, including [broadcasts](/messaging/broadcasts), fail.
-
 <Warning>
-  If broadcasts keep failing, check this first. A missing payment method is the most common cause.
+  **Why broadcasts fail without this**
+
+  Meta requires a payment method before it allows business-initiated template messages ([broadcasts](/messaging/broadcasts)). If your broadcasts keep failing, this is the most common cause.
 </Warning>
 
-## Add a card
+<Frame>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/WKlpRUJ6YuQ" title="How to Add Payment Method on Meta Business Suite for WhatsApp API (2026)" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+</Frame>
+
+## Step-by-step: Add a payment method in Meta
 
 <Steps>
-  <Step title="Open your number from GreenTick">
-    In [dashboard.greentick.ai](https://dashboard.greentick.ai/), open **WhatsApp Connections**, open your number, and click **Manage** to go to Meta Business Suite.
+  <Step title="Log in to your GreenTick dashboard and open your number">
+    Go to [dashboard.greentick.ai](https://dashboard.greentick.ai/). Go to **WhatsApp Connections**, open your number, and click **Manage** to open Meta Business Suite.
   </Step>
-  <Step title="Add a payment method">
-    In the billing section, click **Add Payment Method**. Choose **Debit or Credit Card** and click **Next**.
+  <Step title="Click Add Payment Method">
+    In Meta Business Suite, navigate to the billing section. Click **Add Payment Method**. Choose **Debit or Credit Card** and click **Next**.
   </Step>
-  <Step title="Enter card details">
-    Fill in the name on the card, card number, expiry month and year, and CVV. Accept the terms and click **Save**.
+  <Step title="Enter your card details">
+    Fill in: name on card, card number, expiry month and year, and CVV. Accept the terms and click **Save**.
   </Step>
-  <Step title="Verify with your bank">
-    Enter the one-time code from your bank, click **Verify**, then **Done**.
+  <Step title="Verify with your bank OTP">
+    Enter the OTP sent by your bank to verify the card. Click **Verify**, then **Done**.
   </Step>
-  <Step title="Add billing information">
-    Fill in country, currency, time zone, business name, address, postcode, tax ID (GST number in India), and business purpose. Meta needs these for tax and compliance.
+  <Step title="Add your billing business information">
+    Fill in your billing details: country, currency, time zone, business name, address, PIN code, GST number, and business purpose. This information is required by Meta for tax and compliance.
+  </Step>
+  <Step title="To remove or switch a card">
+    To remove a card, click the three dots next to it and select **Remove**. To switch your default payment method, click the three dots and select **Set as default**.
   </Step>
 </Steps>
 
-## Remove or switch a card
-
-Click the three dots next to a card. Choose **Remove** to delete it, or **Set as default** to make it the main payment method.
-
-<Info>
-  This card pays Meta's message charges. Your GreenTick plan is billed separately in the dashboard. See [Plans](/account/plans).
-</Info>
-
-## Video walkthrough
-
-<Frame>
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/WKlpRUJ6YuQ" title="Add a payment method on Meta for WhatsApp API" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-</Frame>
-
-The full setup guide is on [greentick.ai](https://greentick.ai/whatsapp-business-api-setup/).
+Watch on [YouTube](https://www.youtube.com/watch?v=WKlpRUJ6YuQ). The full written walkthrough is on [greentick.ai](https://greentick.ai/whatsapp-business-api-setup/).
 
 **Previous:** [Set up your WhatsApp profile](/meta-setup/whatsapp-profile)

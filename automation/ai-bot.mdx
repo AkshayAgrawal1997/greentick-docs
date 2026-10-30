@@ -1,27 +1,42 @@
 ---
 title: "AI Bot"
 description: "Let an AI bot answer on a WhatsApp number using the knowledge you add."
-keywords: ["AI bot", "knowledge", "auto reply"]
+keywords:
+  - "AI bot"
+  - "knowledge"
+  - "auto reply"
 ---
 
 The AI bot answers customers on the connected number from the knowledge you provide. It is included on Standard and Premium.
 
 Open **AI Bot**.
 
-## Set it up
+<Info>
+  **How the AI Bot works**
+
+  GreenTick's AI Bot uses your uploaded knowledge base (FAQs, product info, policies) to answer customer questions in natural language. When it cannot answer, it hands the conversation to a human agent.
+</Info>
+
+## Set up the AI Bot
 
 <Steps>
-  <Step title="Create the bot">
-    Add a bot for the phone number and describe how it should answer.
+  <Step title="Navigate to AI Bot">
+    In your GreenTick dashboard, go to **Automation → AI Bot**. Click **Enable AI Bot** to activate it for your connected WhatsApp number.
   </Step>
-  <Step title="Add knowledge">
-    Add the facts, policies, and links the bot is allowed to use. The bot answers from that knowledge.
+  <Step title="Upload your knowledge base">
+    Click **Add Knowledge**. You can upload FAQs as a text file or paste them directly. The bot uses this content to generate answers. The more detailed your FAQs, the better the responses.
   </Step>
-  <Step title="Test">
-    Send a test question in the dashboard before you enable the bot on live chats.
+  <Step title="Configure bot personality">
+    Set a bot name, greeting message, and tone (formal/friendly). The greeting message fires when a new conversation starts and the bot is active.
   </Step>
-  <Step title="Enable">
-    Turn the bot on for the number. You can also assign a single conversation to the AI bot from **Live Chat** or from an automation.
+  <Step title="Set escalation rules">
+    Define when the bot should hand off to a human: **Keyword trigger** (customer types "agent", "human", "help"), **Low confidence** (bot cannot answer), or **After X turns**. Escalated chats appear in the [Team Inbox](/messaging/live-chat) with a bot handoff tag.
+  </Step>
+  <Step title="Test before going live">
+    Use the **Test Bot** preview inside the dashboard to simulate customer messages. Check that answers match expectations and escalation triggers correctly.
+  </Step>
+  <Step title="Activate and monitor">
+    Toggle AI Bot to **Live**. Monitor bot performance in **Analytics → Bot Reports**: answer rate, escalation rate, average resolution time.
   </Step>
 </Steps>
 
@@ -31,8 +46,10 @@ An [automation](/automation/automations) can hand a chat to the bot, and a teamm
   Enable the bot only after a test reply looks right. Customers see those replies on WhatsApp.
 </Warning>
 
-<Tip>
-  Keep the knowledge current. Update it whenever your pricing, policies, or products change, or the bot will answer from old facts.
-</Tip>
+<Warning>
+  **Keep your knowledge base current**
 
-The full written walkthrough is on [greentick.ai](https://greentick.ai/set-up-a-whatsapp-ai-bot/).
+  Outdated FAQs lead to wrong answers. Update the knowledge base every time your pricing, policies, or products change.
+</Warning>
+
+Watch more on [YouTube](https://www.youtube.com/@WAGrowthLab). The full written walkthrough is on [greentick.ai](https://greentick.ai/set-up-a-whatsapp-ai-bot/).

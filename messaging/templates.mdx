@@ -8,22 +8,56 @@ A template is a WhatsApp message Meta reviews before you can send it. Broadcasts
 
 Open **Templates** in the dashboard.
 
-## Create a template
+<Info>
+  **What is a template?**
+
+  A WhatsApp template is a pre-approved message format. All outbound messages to customers (unless they messaged you first within 24 hours) must use an approved template.
+</Info>
+
+## Create a new template
 
 <Steps>
-  <Step title="Choose the category">
-    Use **Marketing** for promotions, **Utility** for account or order updates, or **Authentication** for one-time passwords. Meta reviews each category differently. See [Template categories](/messaging/template-categories) to pick the right one.
+  <Step title="Go to Templates in the sidebar">
+    Click **Templates** in the left navigation. You'll see all your existing templates and their status (Approved, Pending, Rejected).
   </Step>
-  <Step title="Write the message">
-    Add the body, and a header, footer, or buttons when you need them. GreenTick templates use named variables, such as `customer_name`, not numbered placeholders.
+  <Step title='Click "Create Template"'>
+    Hit the **\+ Create Template** button in the top right. The template builder will open.
   </Step>
-  <Step title="Add samples">
-    Fill sample values for every variable. Meta uses those samples during review.
+  <Step title="Set template name, category, and language">
+    Give your template a lowercase, underscore-separated name (e.g. `summer_sale_offer`). Choose the correct category: Marketing, Utility, or Authentication. Select your language. See [Template categories](/messaging/template-categories).
+
+    <Warning>
+      Template names cannot be changed after submission. Use descriptive names you can recognize later.
+    </Warning>
   </Step>
-  <Step title="Submit">
-    Submit the template from the connected phone number. Status stays pending until Meta approves or rejects it. Only approved templates appear when you start a broadcast.
+  <Step title="Build your template components">
+    Templates have up to 4 parts:
+
+    - **Header** (optional): text, image, video, or document
+    - **Body** (required): your main message. Use `{{1}}`, `{{2}}` for personalization variables
+    - **Footer** (optional): short tagline or disclaimer
+    - **Buttons** (optional): Quick Reply (up to 3) or Call-to-Action (URL / phone)
+  </Step>
+  <Step title="Preview and submit for approval">
+    Review the live preview on the right side. Once satisfied, click **Submit for Review**. Meta reviews templates. Approval usually takes a few minutes to a few hours.
+  </Step>
+  <Step title="Check approval status">
+    Return to the Templates list. Status will update to **Approved** (green), **Pending** (yellow), or **Rejected** (red). Approved templates are immediately available for [broadcasts](/messaging/broadcasts).
   </Step>
 </Steps>
+
+<Tip>
+  **Variable tip**
+
+  Always provide sample values for your variables during submission (e.g. `{{1}}` = "Priya"). Meta uses these samples to review your template content. Missing samples are a common rejection reason.
+</Tip>
+
+| Status | Meaning | What to do |
+| --- | --- | --- |
+| ✅ Approved | Ready to use in broadcasts | Use it in your next campaign |
+| ⏳ Pending | Under Meta review | Wait, typically resolves in minutes |
+| ❌ Rejected | Did not meet Meta policy | Edit and resubmit, or check rejection reason |
+| ⛔ Disabled | High user block/report rate | Review content quality, contact support |
 
 ## What you can include
 
@@ -46,4 +80,4 @@ Once a template is approved, send it from [Broadcasts](/messaging/broadcasts) or
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/AX8Bh3xT53E" title="Create and submit WhatsApp templates on GreenTick" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </Frame>
 
-The full written walkthrough is on [greentick.ai](https://greentick.ai/create-whatsapp-message-templates/).
+Watch on [YouTube](https://youtu.be/AX8Bh3xT53E). The full written walkthrough is on [greentick.ai](https://greentick.ai/create-whatsapp-message-templates/).

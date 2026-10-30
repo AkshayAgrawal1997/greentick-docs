@@ -8,22 +8,47 @@ A broadcast sends one approved template to the contacts you select on the connec
 
 Open **Broadcasts** in the dashboard.
 
-## Send a broadcast
+<Info>
+  **Prerequisites**
+
+  You need at least one **approved template** and at least one **imported contact** before creating a broadcast.
+</Info>
+
+## Create and send a broadcast
 
 <Steps>
-  <Step title="Choose an approved template">
-    The template picker lists approved templates only. If the template is missing, check [Templates](/messaging/templates) and wait for Meta approval.
+  <Step title='Go to Broadcasts and click "New Broadcast"'>
+    In the left sidebar, click **Broadcasts**. Then click **\+ New Broadcast** in the top right corner.
   </Step>
-  <Step title="Fill variables">
-    Provide a value for each named variable. You can map variables from contact fields and attributes so each recipient gets their own value.
+  <Step title="Name your broadcast">
+    Enter an internal name (e.g. `Diwali Sale Oct 2025`). This is only visible to you. It's not sent to customers.
   </Step>
-  <Step title="Select recipients">
-    Search saved contacts, filter by labels or attributes, import a file, or add phone numbers for this send. Contacts who opted out of broadcasts stay excluded.
+  <Step title="Select a template">
+    Choose an **Approved** template from the dropdown. The message preview will appear on the right. If you don't have an approved template yet, create one in the [Templates](/messaging/templates) section first.
   </Step>
-  <Step title="Send or schedule">
-    Choose **Send now** or **Schedule for a specific time**. Drip campaigns use **Start now** instead of **Send now**.
+  <Step title="Fill in variables (if any)">
+    If your template uses variables like `{{1}}`, map them to contact fields (e.g. Contact Name, Custom Field 1). Each contact will receive a personalized message with their data filled in automatically.
+  </Step>
+  <Step title="Select your audience">
+    Choose recipients from:
+
+    - **All Contacts**: your entire list
+    - **Segment**: filtered group (by tag, custom field, or previous campaign behavior)
+    - **Upload List**: a fresh CSV for this broadcast
+  </Step>
+  <Step title="Schedule or send immediately">
+    Click **Send Now** to dispatch immediately, or toggle **Schedule** to pick a date and time. Scheduled broadcasts appear in the Broadcasts list with a "Scheduled" status.
+  </Step>
+  <Step title="Monitor delivery reports">
+    After sending, open the broadcast to view real-time stats: **Sent, Delivered, Read,** and **Failed** counts. Click any stat to see which contacts are in that state.
   </Step>
 </Steps>
+
+<Warning>
+  **Avoid broadcast spam**
+
+  Only message opted-in contacts. High block rates damage your phone number quality rating and can restrict your daily messaging limit. Aim for relevant, value-first content.
+</Warning>
 
 After the broadcast starts, the list shows recipients and delivery. Failed messages can be retried from the broadcast when your plan includes that feature.
 
@@ -45,4 +70,4 @@ Standard and Premium include drip campaigns. A drip enrolls contacts into an [au
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/PP67LPKuw40" title="Send a bulk broadcast on GreenTick" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </Frame>
 
-The full written walkthrough is on [greentick.ai](https://greentick.ai/send-bulk-whatsapp-messages/).
+Watch on [YouTube](https://www.youtube.com/watch?v=PP67LPKuw40). The full written walkthrough is on [greentick.ai](https://greentick.ai/send-bulk-whatsapp-messages/).

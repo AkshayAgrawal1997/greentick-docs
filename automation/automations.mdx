@@ -8,6 +8,43 @@ An automation is a workflow on one WhatsApp number. It starts from a trigger, th
 
 Open **Automations**. Standard includes 5 automations. Premium includes unlimited automations and a setup session for advanced workflows. Starter does not include the automation builder.
 
+<Info>
+  **What are Automations?**
+
+  Automations in GreenTick let you trigger actions based on keywords, time delays, or conversation events. Use them for welcome messages, FAQ auto-replies, drip sequences, and routing chats to the right team member.
+</Info>
+
+## Create an automation
+
+<Steps>
+  <Step title="Open the Automation section">
+    From your GreenTick dashboard, navigate to **Automation** in the left sidebar. You will see a list of your existing automation rules (empty on first use).
+  </Step>
+  <Step title="Create a new rule">
+    Click **\+ Create Automation**. Each rule has three parts: a Trigger, optional Conditions, and one or more Actions.
+  </Step>
+  <Step title="Set the Trigger">
+    Choose when this rule fires. Common triggers: **Keyword received** (customer sends a specific word), **New conversation started**, **No reply in X hours**, or **Contact tag added**.
+  </Step>
+  <Step title="Add conditions (optional)">
+    Narrow when the rule fires. Examples: only trigger if the contact has tag "Lead", or only between 9 AM and 6 PM. Conditions let you build smart, context-aware rules.
+  </Step>
+  <Step title="Choose your Action(s)">
+    Actions execute when conditions are met. Available actions:
+
+    | Action | What it does |
+    | --- | --- |
+    | Send Message | Auto-reply with a text or template message |
+    | Assign Conversation | Route chat to a specific agent or team |
+    | Add Tag | Tag the contact automatically |
+    | Add to Sequence | Enroll contact in a drip campaign |
+    | Close Conversation | Mark chat resolved after auto-reply |
+  </Step>
+  <Step title="Save and activate">
+    Toggle the rule to **Active** and click **Save**. The automation runs instantly for all matching conversations going forward.
+  </Step>
+</Steps>
+
 ## Triggers
 
 | Trigger | When it runs |
@@ -36,7 +73,9 @@ Saving a draft does not run it. **Publish** the automation and turn it on. A web
 </Info>
 
 <Tip>
-  Customers rarely spell perfectly. When a condition checks message text, cover common variants, for example "price", "prise", and "pricing".
+  **Keyword matching tip**
+
+  Use common misspellings as separate keyword triggers (e.g., "price", "prise", "pricing"). WhatsApp customers rarely spell perfectly.
 </Tip>
 
 ## Video walkthrough
@@ -45,4 +84,4 @@ Saving a draft does not run it. **Publish** the automation and turn it on. A web
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/daG_gD4oxdw" title="GreenTick automations walkthrough" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </Frame>
 
-The full written walkthrough is on [greentick.ai](https://greentick.ai/set-up-whatsapp-automation/).
+Watch on [YouTube](https://www.youtube.com/watch?v=daG_gD4oxdw). The full written walkthrough is on [greentick.ai](https://greentick.ai/set-up-whatsapp-automation/).

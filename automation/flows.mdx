@@ -8,19 +8,48 @@ A Flow is a form that opens inside WhatsApp. Customers can register, book, or an
 
 Open **Flows**. Standard includes 5 Flows. Premium includes unlimited Flows.
 
-## Create and publish
+<Info>
+  **What are WhatsApp Flows?**
+
+  Flows are interactive, multi-screen experiences built natively inside WhatsApp. Customers tap through screens (forms, selection lists, confirmation pages) without leaving the chat. Common uses: lead capture, appointment booking, order intake, feedback surveys.
+</Info>
+
+## Create your first Flow
 
 <Steps>
-  <Step title="Build the Flow">
-    Add the screens and fields on **Flows**. A new Flow is a draft.
+  <Step title="Go to Flows in the sidebar">
+    Click **Flows** (lightning bolt icon) in the left navigation. You'll see your existing flows and their published status.
   </Step>
-  <Step title="Publish">
-    Publish the Flow before you send it. Drafts cannot be sent to customers. Meta only allows a delete while the Flow is still a draft.
+  <Step title='Click "Create Flow" and name it'>
+    Hit **\+ Create Flow**. Enter a name (e.g. `Lead Capture Form`) and choose a category (Lead Generation, Appointment Booking, Customer Support, Survey, etc.).
   </Step>
-  <Step title="Send it">
-    Send a published Flow from a [template](/messaging/templates), a [broadcast](/messaging/broadcasts), an [automation](/automation/automations), or [Live Chat](/messaging/live-chat) during an open customer service window.
+  <Step title="Design your screens">
+    Each Flow consists of one or more **screens**. Add components to each screen:
+
+    - **Text input**: name, email, phone fields
+    - **Dropdown / radio buttons**: single or multi-select options
+    - **Date picker**: for bookings
+    - **Image**: add a visual header
+    - **Footer button**: "Next", "Submit", "Confirm"
+  </Step>
+  <Step title="Add a Success screen">
+    The last screen should confirm the action. Add a thank-you message and a completion message. This is what the customer sees after submitting.
+  </Step>
+  <Step title="Publish the Flow">
+    Once all screens are complete, click **Publish**. Meta reviews the Flow (usually under 2 hours). Published flows get a Flow ID.
+  </Step>
+  <Step title="Attach the Flow to a template button">
+    Go to **[Templates](/messaging/templates) → Create Template**. Under Buttons, select **Flow** as the button type and paste your Flow ID. Submit the template for approval. When sent to a customer, tapping the button opens your Flow.
   </Step>
 </Steps>
+
+<Tip>
+  **Viewing Flow responses**
+
+  All completed Flow submissions appear in the contact's conversation history. You can also export responses as CSV from the Flows section.
+</Tip>
+
+A published Flow can also be sent from a [broadcast](/messaging/broadcasts), an [automation](/automation/automations), or [Live Chat](/messaging/live-chat) during an open customer service window.
 
 Submissions are stored on the Flow. You can review them in the dashboard. Deprecating a Flow stops new sends. It does not delete submissions you already have.
 
@@ -34,4 +63,4 @@ Submissions are stored on the Flow. You can review them in the dashboard. Deprec
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/ZDX21JNZATE" title="Create WhatsApp Flows" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 </Frame>
 
-The full written walkthrough is on [greentick.ai](https://greentick.ai/create-whatsapp-flows/).
+Watch on [YouTube](https://www.youtube.com/watch?v=ZDX21JNZATE). The full written walkthrough is on [greentick.ai](https://greentick.ai/create-whatsapp-flows/).

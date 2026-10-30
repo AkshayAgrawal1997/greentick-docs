@@ -26,6 +26,25 @@ A Flow is a form inside WhatsApp. The assistant saves a static draft, and it pub
 
 `create_flow` takes `name`, up to 5 `categories`, and `screens`. Each screen has `title`, optional `body` and `footerLabel`, and `fields`.
 
+Field `type` matches the dashboard builder:
+
+| Type | What it sends |
+| --- | --- |
+| `text`, `email`, `phone`, `number` | A one-line answer. Email, phone, and number keep WhatsApp's input check. |
+| `textarea` | A multi-line answer. |
+| `dropdown`, `radio`, `checkbox`, `chips` | A choice. `radio` with no options is Yes/No. Send `options` as `{ id, title }`. |
+| `date`, `calendar` | A date. Optional `minDate` and `maxDate` are `YYYY-MM-DD`. |
+| `optin` | A consent checkbox. |
+| `photo`, `document` | An upload. One upload per screen. |
+| `heading`, `subheading`, `body`, `caption` | Read-only text. These are not inputs. |
+| `image`, `image_carousel` | A picture. `src` is base64. |
+| `rich_text` | Formatted text. That screen can contain only rich text. |
+| `embedded_link` | A link. `url` must be `https`. |
+| `navigation_list` | Links to other screens. `items[].navigateTo` is a 1-based screen number. That screen cannot be last. |
+| `switch`, `if` | Show different text from an earlier answer. `if` uses `condition`, `then`, and optional `else`. |
+
+`helperText` is the line under a field. Set `required: true` when the answer is required. Do not send screen ids.
+
 Pass `metaFlowId` from `list_flows`, `get_flow`, or `create_flow` to every later Flow tool, including `delete_flow`. It is the numeric WhatsApp Flow id, such as `4630212380592085`. `id` in those results is the same value. Do not pass a 24-character id. A 24-character id is still accepted and resolved, so an older value does not need a second call.
 
 The assistant does not call `send_flow` for a draft, and it does not publish while validation is failing.

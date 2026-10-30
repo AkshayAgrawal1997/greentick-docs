@@ -68,5 +68,5 @@ curl "https://api.greentick.ai/v1/conversations?phoneNumberRef=668f1a2b3c4d5e6f7
 Fetch messages with `GET /v1/conversations/{id}/messages`.
 
 <Tip>
-  Mark an inbound message read with `POST /v1/messages/read` and the GreenTick `messageId`. Cancel a scheduled template with `DELETE /v1/messages/scheduled/{id}`.
+  Mark an inbound message read with `POST /v1/messages/read`. `messageId` is `messages[].id` from the thread, not the WhatsApp `wamid`. Cancel a scheduled template with `DELETE /v1/messages/scheduled/{id}`.
 </Tip>

@@ -323,7 +323,7 @@
           "Messages"
         ],
         "summary": "Mark an inbound message as read",
-        "description": "Sends a WhatsApp read receipt for an inbound message and clears the conversation unread count. Use the GreenTick message id from GET /conversations/{id}/messages.",
+        "description": "Sends a WhatsApp read receipt for one inbound message and clears the conversation unread count. messageId is messages[].id from GET /conversations/{id}/messages, the 24-character GreenTick id. Do not send messages[].wamid (it starts with wamid.) when id is present, and do not send the conversation id. A wamid is accepted only when you do not have id. To mark the whole thread, use POST /conversations/{id}/read.",
         "operationId": "markMessageRead",
         "security": [
           {
@@ -348,7 +348,7 @@
                   },
                   "messageId": {
                     "type": "string",
-                    "description": "GreenTick inbound message id (data.messages[].id).",
+                    "description": "GreenTick inbound message id (messages[].id from GET /conversations/{id}/messages). A 24-character hex id such as 668f1a2b3c4d5e6f7a8b9c0d. Not the conversation id. A WhatsApp wamid (messages[].wamid, starts with wamid.) is accepted only when you do not have id.",
                     "example": "668f1a2b3c4d5e6f7a8b9c0d"
                   }
                 }
@@ -9102,10 +9102,13 @@
         "description": "Normalized message row. Returned on POST /messages (data.message) and in GET /conversations/{id}/messages.",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "GreenTick message id. Pass this to POST /messages/read. Not the conversation id.",
+            "example": "668f1a2b3c4d5e6f7a8b9c0d"
           },
           "wamid": {
-            "type": "string"
+            "type": "string",
+            "description": "WhatsApp message id. Starts with wamid. Do not send this to POST /messages/read when id is present."
           },
           "direction": {
             "type": "string",

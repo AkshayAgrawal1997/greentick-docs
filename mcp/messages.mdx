@@ -34,4 +34,4 @@ Set `scheduledAt` only for `type: template`, and only after you ask to send late
 
 ## Read state
 
-`mark_message_read` takes the GreenTick `messageId` of one inbound message. To mark a whole thread, use `mark_conversation_read` on [Inbox](/mcp/inbox).
+`mark_message_read` marks one inbound message. `messageId` is `id` from `list_conversation_messages`, the 24-character GreenTick id. Send that id on the first call. `wamid` starts with `wamid.` and is WhatsApp's id. Do not send `wamid` when `id` is present, and do not send the conversation id. A `wamid` is accepted only when you do not have `id`. To mark a whole thread, use `mark_conversation_read` on [Inbox](/mcp/inbox).

@@ -72,7 +72,19 @@
             "pages": [
               "index",
               "quickstart",
-              "connect-whatsapp"
+              "connect-whatsapp",
+              "dashboard-overview"
+            ]
+          },
+          {
+            "group": "Meta setup",
+            "pages": [
+              "meta-setup/create-business-portfolio",
+              "meta-setup/fill-business-details",
+              "meta-setup/create-developer-app",
+              "meta-setup/verify-your-business",
+              "meta-setup/whatsapp-profile",
+              "meta-setup/add-payment-method"
             ]
           },
           {
@@ -88,6 +100,7 @@
             "icon": "comments",
             "pages": [
               "messaging/templates",
+              "messaging/template-categories",
               "messaging/broadcasts",
               "messaging/live-chat"
             ]

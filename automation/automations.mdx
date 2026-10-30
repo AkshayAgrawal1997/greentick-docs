@@ -22,15 +22,27 @@ The first step must be the trigger. Conditions can check the message, a button r
 
 Saving a draft does not run it. **Publish** the automation and turn it on. A webhook trigger shows a secret URL after publish. Treat that URL as a credential. Anyone who has it can start the workflow.
 
-Drip campaigns only list workflows whose trigger is **Enroll contacts**. Publish and turn the workflow on before you select it on the campaign.
+[Drip campaigns](/messaging/broadcasts#drip-campaigns) only list workflows whose trigger is **Enroll contacts**. Publish and turn the workflow on before you select it on the campaign.
 
 ## What a step can do
 
 - Send text, media, buttons, a template, a published Flow, or a catalog message
 - Add or remove a label, or set an attribute
-- Assign the conversation to a teammate or the AI bot
+- Assign the conversation to a [teammate](/account/team) or the [AI bot](/automation/ai-bot)
 - Wait, then continue
 
 <Info>
   The API can list enrollable automations and start one with `POST /v1/automations/{id}/enroll`. Webhook triggers use `POST /v1/hooks/{secret}`. Both are in the API reference.
 </Info>
+
+<Tip>
+  Customers rarely spell perfectly. When a condition checks message text, cover common variants, for example "price", "prise", and "pricing".
+</Tip>
+
+## Video walkthrough
+
+<Frame>
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/daG_gD4oxdw" title="GreenTick automations walkthrough" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+</Frame>
+
+The full written walkthrough is on [greentick.ai](https://greentick.ai/set-up-whatsapp-automation/).

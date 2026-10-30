@@ -26,7 +26,7 @@ Enable the Shop desk bot.
     `get_ai_bot_catalog` lists models. `create_ai_bot` creates a disabled bot. `agentType` is `customer_support`, `booking`, `sales`, or `custom`.
   </Step>
   <Step title="Add knowledge and test">
-    `add_ai_bot_knowledge` adds `faq`, `url`, or `file` knowledge. `get_ai_bot_knowledge` reports `pending`, `processing`, `ready`, or `failed`. `test_ai_bot` sends one `message` to the bot. Knowledge that is still `processing` blocks enable. The assistant waits and reads the knowledge again.
+    `add_ai_bot_knowledge` adds `faq`, `url`, or `file` knowledge. A `url` is a whole website. The crawl fetches more pages after the call returns and can take several minutes. `get_ai_bot_knowledge` lists every source, including a failed one with its error. `crawling` and `processing` are not errors. `test_ai_bot` sends one `message` to the bot. The assistant waits and reads the knowledge again. `retry_ai_bot_knowledge` or `delete_ai_bot_knowledge` clears a stuck source. `disable_ai_bot` turns the bot off.
   </Step>
   <Step title="Enable">
     `enable_ai_bot` runs only after the test, after every source is `ready`, and after you ask.

@@ -14,12 +14,15 @@ A new bot stays disabled. The assistant cannot turn it on until a test succeeds 
 | `list_ai_bots` | Lists bots and whether each one is enabled. |
 | `create_ai_bot` | Creates a disabled bot. Ask which catalog model to use and pass that id as `model`. Do not guess a provider. `agentType` is `customer_support`, `booking`, `sales`, or `custom`. Ask before adding `systemPrompt` or `handoffMessage`. |
 | `update_ai_bot` | Updates the bot. Pass `model` only when the customer wants a different catalog model. Updating does not enable it. |
-| `add_ai_bot_knowledge` | Adds `faq`, `url`, or `file` knowledge. Ask which kind. FAQ uses `question` and `answer`. A website uses `url`. File and URL content is stored as text. |
-| `get_ai_bot_knowledge` | Lists sources. Status is `pending`, `processing`, `ready`, or `failed`. |
+| `add_ai_bot_knowledge` | Adds `faq`, `url`, or `file` knowledge. Ask which kind. FAQ uses `question` and `answer`. A `url` is a whole website. The crawl fetches more pages after the call returns and can take several minutes. |
+| `get_ai_bot_knowledge` | Lists every source. A failed source shows `failed` and `errorMessage` without hiding the others. `crawling` and `processing` mean a website crawl is still running. Read `crawlProgress.pagesFetched`. |
+| `retry_ai_bot_knowledge` | Starts a failed or stuck ingest again. Pass `sourceId` from the list. |
+| `delete_ai_bot_knowledge` | Removes one source, including a failed crawl that is keeping the bot in training. |
 | `test_ai_bot` | Sends one `message` to the bot. `sourceUrls` lists website pages used in the answer. A successful test is required before enable. |
-| `enable_ai_bot` | Enables the bot after the test, after every knowledge source is `ready`, and after you ask. |
+| `enable_ai_bot` | Enables the bot after the test, after every kept source is `ready`, and after you ask. |
+| `disable_ai_bot` | Turns the bot off. It does not delete the bot. |
 | `delete_ai_bot` | Deletes the bot. |
 
-Name, system prompt, and handoff message must fit `get_limits`. Knowledge that is still `processing` blocks `enable_ai_bot`. The assistant waits and reads `get_ai_bot_knowledge` again. It does not enable the bot to skip that wait.
+Name, system prompt, and handoff message must fit `get_limits`. A website crawl stays `crawling`, then `processing`, for several minutes. That list is not an error. The assistant polls `get_ai_bot_knowledge` and does not enable the bot while a source is still running. A failed source can be retried or removed. `disable_ai_bot` turns the bot off.
 
 A file used as knowledge follows the [Media](/mcp/media) rules for the `knowledge` purpose: PDF, plain text, Markdown, or JSON.

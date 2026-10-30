@@ -23,7 +23,7 @@ Schedule that broadcast for Friday at 10:00 in the account timezone.
 
 <Steps>
   <Step title="Draft">
-    `create_broadcast` takes `templateName` and `language`. The template must already be `APPROVED`. Optional `contactPhones` is a list of up to 1,000 numbers with country codes. Pass `phoneNumberRef` when the account has more than one number.
+    `create_broadcast` takes `templateName` and `language`. The template must already be `APPROVED`. The result is a `PENDING` draft and does not send. Pass `contactPhones`, `labels`, or both. `labels` are label ids or names. Pass `variables` when the template has placeholders, and `headerMediaUrl` when the header is media. Pass `phoneNumberRef` when the account has more than one number.
   </Step>
   <Step title="Preview">
     `preview_broadcast` counts recipients. The assistant shows you that count. `schedule_broadcast` stays blocked until you accept it.

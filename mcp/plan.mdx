@@ -13,7 +13,7 @@ Plan tools only read the account. They do not buy, change, pause, cancel, or pay
 | `get_plan` | Reads the current plan name, status, renewal date, and what is included: messages, AI tokens, automations, Flows, bots, seats, and phone numbers, with how many are used. `price` is the formatted amount, such as ₹41,999 / year. `usageHistory` includes the current period and earlier closed periods. `resourceUsage.seats.used` counts invited teammates. The account owner does not take a seat, so [Team](/mcp/team) can list one more person. |
 | `get_usage` | Reads message and AI token usage for this billing period. Automations, Flows, bots, and seats are on `get_plan`. |
 | `get_billing_info` | Reads the billing name, email, address, and tax id. It does not update them. |
-| `list_invoices` | Lists invoices. Each one has `id`, `number`, `status`, `amountPaid`, `total`, `currency`, and `receiptUrl` when Stripe has a receipt. `amountPaid` and `total` are in paise or cents. |
+| `list_invoices` | Lists invoices. Each one has `id`, `number`, `status`, `amountPaid`, `subtotal`, `discount`, `total`, `currency`, and `receiptUrl` when Stripe has a charge receipt. Amounts are in paise or cents. A paid invoice with `total` 0 was covered by a coupon: `subtotal` is the price before that coupon, and Stripe has no receipt because it collected no payment. |
 
 `get_limits` is separate. It is the character limit for a template, workflow, Flow, bot, catalog, or message, not the plan you are on.
 

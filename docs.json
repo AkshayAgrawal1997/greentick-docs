@@ -53,6 +53,11 @@
       "canonical": "https://docs.greentick.ai"
     }
   },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-CFFRX5DQ6H"
+    }
+  },
   "redirects": [
     {
       "source": "/mcp/overview",

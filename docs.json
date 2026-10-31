@@ -85,7 +85,8 @@
               "meta-setup/verify-your-business",
               "meta-setup/whatsapp-profile",
               "meta-setup/add-payment-method"
-            ]
+            ],
+            "icon": "building"
           },
           {
             "group": "Contacts",
@@ -121,7 +122,8 @@
             "pages": [
               "integrations/click-to-chat-widget",
               "integrations/google-sheets"
-            ]
+            ],
+            "icon": "plug"
           },
           {
             "group": "Account",
@@ -154,7 +156,8 @@
               "mcp/introduction",
               "mcp/client-setup",
               "mcp/rules"
-            ]
+            ],
+            "icon": "flag"
           },
           {
             "group": "Use cases",
@@ -179,7 +182,8 @@
               "mcp/use-cases/enable-ai-bot",
               "mcp/use-cases/send-ad-conversion",
               "mcp/use-cases/check-plan-usage"
-            ]
+            ],
+            "icon": "lightbulb"
           },
           {
             "group": "Tools",
@@ -196,7 +200,8 @@
               "mcp/plan",
               "mcp/contacts",
               "mcp/catalogs"
-            ]
+            ],
+            "icon": "wrench"
           }
         ]
       },

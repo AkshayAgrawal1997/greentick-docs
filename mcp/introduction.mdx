@@ -7,7 +7,7 @@ keywords: ["GreenTick MCP", "WhatsApp MCP", "Model Context Protocol", "AI assist
 
 The GreenTick MCP server lets an assistant use your WhatsApp Business account. It calls the Developer API with your API key. You describe the job in plain language. The assistant discovers the tools, calls them, and reports the result.
 
-The server address is `https://api.greentick.ai/mcp`. That host is the WhatsApp server. The `/mcp` path on this docs site is a separate search server for the documentation, and it cannot send WhatsApp messages.
+The server address is `https://api.greentick.ai/mcp`. Connecting it asks you to sign in as the GreenTick account owner. A Developer API key cannot open this connection. That host is the WhatsApp server. The `/mcp` path on this docs site is a separate search server for the documentation, and it cannot send WhatsApp messages.
 
 The server is included on Starter, Standard, and Premium. An expired plan rejects every tool call with `PLAN_EXPIRED`.
 
@@ -21,7 +21,7 @@ sequenceDiagram
     participant API as Developer API
 
     You->>Agent: Ask in plain language
-    Agent->>MCP: Tool call with Bearer key
+    Agent->>MCP: Tool call with the signed-in account
     MCP->>API: Matching API request
     API-->>MCP: Result
     MCP-->>Agent: Tool result
@@ -51,13 +51,13 @@ Each job also has its own page under [Use cases](/mcp/examples). Those pages are
 
 ## Authentication
 
-Create a key in **Developer**. The secret starts with `gt_live_` and is shown once. It belongs to the WhatsApp Business account you had selected.
+Add the server in Claude, Cursor, VS Code, or Claude Code. The client sends you to GreenTick to sign in. Only the owner of the WhatsApp Business accounts can finish that screen. One sign-in covers every account that owner owns. The consent screen asks which account to use when a message does not name one.
 
-Send it on every request as `Authorization: Bearer gt_live_…`. A bare key, without the `Bearer` prefix, is rejected. Do not put the key in the URL.
+A `gt_live_` Developer API key is rejected on `https://api.greentick.ai/mcp`. Those keys still work on the Developer API at `/v1`.
 
-Client files for Claude, Cursor, and VS Code are on [Client setup](/mcp/client-setup).
+Client steps are on [Client setup](/mcp/client-setup).
 
-A `GET` to `https://api.greentick.ai/mcp` without a key only reports that a server named `greentick` exists. Listing and calling tools still needs the Bearer key.
+A request to `https://api.greentick.ai/mcp` without a signed-in session returns `401`. That response is what starts the sign-in.
 
 ## Quick example
 
@@ -76,12 +76,12 @@ A connected assistant calls `list_templates` and returns the approved set. Sendi
     No. `send_message`, `schedule_broadcast`, `publish_workflow`, `publish_flow`, `send_flow`, `enroll_automation`, and `enable_ai_bot` run only after you ask for that action in the conversation. Reading tools, such as `list_templates` and `list_contacts`, do not need a separate yes.
   </Accordion>
   <Accordion title="The Integrations card says MCP is coming soon. Can I connect anyway?">
-    Yes. Connect `https://api.greentick.ai/mcp` yourself with an API key. You do not wait for that card. See [Client setup](/mcp/client-setup).
+    Yes. Add `https://api.greentick.ai/mcp` and sign in as the account owner. You do not wait for that card. See [Client setup](/mcp/client-setup).
   </Accordion>
-  <Accordion title="What happens when the plan expires or the key is revoked?">
-    An expired plan returns `403` with `PLAN_EXPIRED`. The assistant does not retry until you renew on **Manage Plan**. A missing or revoked key returns `401` with `UNAUTHORIZED`. Create a new key in **Developer** and update the client header.
+  <Accordion title="What happens when the plan expires or the sign-in ends?">
+    An expired plan returns `403` with `PLAN_EXPIRED`. The assistant does not retry until you renew on **Manage Plan**. A missing or expired sign-in returns `401` with `UNAUTHORIZED`. Connect the server again and sign in.
   </Accordion>
   <Accordion title="Do I need a separate model API key?">
-    No. Claude, Cursor, or whichever client you use provides the model. GreenTick only checks the `gt_live_` key.
+    No. Claude, Cursor, or whichever client you use provides the model. GreenTick checks the sign-in from the connect screen.
   </Accordion>
 </AccordionGroup>

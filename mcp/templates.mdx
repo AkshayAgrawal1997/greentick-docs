@@ -33,7 +33,7 @@ The assistant creates a new header image only with `generate_template`. It does 
     The first call sends `prompt` and omits `answers` and `confirmed`. The tool checks the plan and image credits before any image work. It returns the same follow-up questions the dashboard asks, with suggestions.
   </Step>
   <Step title="Ask every question">
-    The assistant asks each question, shows the suggestion, and waits. If the next call returns more questions, it asks those too. It sets `brandSite` to `skip` only when your reply says skip or no website, and it includes that reply in the prompt. It does not fill in answers for you.
+    The assistant asks each question, shows the suggestion, and waits. If the next call returns more questions, it asks those too. It sets `brandSite` to `skip` only when your reply says skip or no website, and it includes that reply in the prompt. It does not fill in answers for you. A phone number, copy code, website button, or WhatsApp Flow question is optional. Skipping one sends `skip` and does not add that button. A Flow question lists the published Flows on the account. Each option value is the numeric Flow id. When that list is empty, the assistant says there is no published Flow and you can continue without one. An opt-out line, or a line that tells you to tap a button, is the template footer, directly above the buttons.
   </Step>
   <Step title="Confirm, then generate">
     Before `confirmed: true`, the assistant tells you that creating the header image takes a few minutes. It sends that message before the tool call. The confirmed call uses a new `idempotencyKey`.

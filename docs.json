@@ -15,6 +15,10 @@
   "navbar": {
     "links": [
       {
+        "label": "Website",
+        "href": "https://greentick.ai"
+      },
+      {
         "label": "Support",
         "href": "mailto:hello@greentick.ai"
       }

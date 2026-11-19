@@ -17,7 +17,7 @@ Schedule the approved template order_update in en to +14155550123 for tomorrow a
 
 <Steps>
   <Step title="Resolve the clock">
-    If you do not name a timezone, the assistant calls `get_api_key` and uses `timeZone`. If you name a zone, it passes an ISO offset, for example `2026-10-25T09:00:00-04:00`. A value with `Z` or an offset is that exact instant.
+    If you do not name a timezone, the assistant calls `get_account` and uses `timeZone`. If you name a zone, it passes an ISO offset, for example `2026-10-25T09:00:00-04:00`. A value with `Z` or an offset is that exact instant.
   </Step>
   <Step title="Schedule">
     `send_message` uses `type: template` and `scheduledAt`. A past time, a time inside the next 5 minutes, or a time past 30 days is rejected. The assistant fixes `scheduledAt` and retries with a new `idempotencyKey`.

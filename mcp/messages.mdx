@@ -26,7 +26,7 @@ Set `scheduledAt` only for `type: template`, and only after you ask to send late
 
 - The time is at least 5 minutes from now and within 30 days.
 - A past time, a time inside the next 5 minutes, or a time past 30 days is rejected. The assistant fixes `scheduledAt` and retries with a new `idempotencyKey`. It does not describe that message as sent.
-- If you do not name a timezone, the assistant calls `get_api_key` and uses `timeZone`.
+- If you do not name a timezone, the assistant calls `get_account` and uses `timeZone`.
 - If you name a zone, it passes an ISO offset, for example `2026-10-25T09:00:00-04:00`. A value with `Z` or an offset is that exact instant.
 - A success body with `scheduled: true` is a schedule, not a delivery. The assistant tells you the time it will send.
 

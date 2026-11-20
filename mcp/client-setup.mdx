@@ -1,8 +1,8 @@
 ---
 title: "MCP client setup"
 sidebarTitle: "Client setup"
-description: "Sign in to the GreenTick MCP server from Claude, ChatGPT, Claude Code, Cursor, or VS Code."
-keywords: ["Claude MCP", "ChatGPT MCP", "Cursor MCP", "VS Code MCP", "WhatsApp MCP setup"]
+description: "Sign in to the GreenTick MCP server from Claude, ChatGPT, Claude Code, Cursor, Gemini CLI, OpenClaw, or VS Code."
+keywords: ["Claude MCP", "ChatGPT MCP", "Cursor MCP", "Gemini CLI MCP", "OpenClaw MCP", "VS Code MCP", "WhatsApp MCP setup"]
 ---
 
 Add `https://api.greentick.ai/mcp` as a remote MCP server. The client opens a GreenTick sign-in. Sign in as the account owner and choose the default WhatsApp Business account. One connection covers every WhatsApp Business account that owner owns.
@@ -39,19 +39,47 @@ Start a new session. Claude Code opens a browser sign-in on localhost. Finish it
 
 ## Cursor
 
-Open **Settings → MCP** and add a remote server:
+Install the GreenTick plugin from the Cursor marketplace. The plugin points at `https://api.greentick.ai/mcp` and includes the workflows for templates, broadcasts, contacts, and the other jobs. Cursor opens the GreenTick consent screen. After you allow it, the plugin is ready.
+
+To add the server without the plugin, open **Settings → MCP** and add:
 
 ```json
 {
   "mcpServers": {
     "greentick": {
-      "url": "https://api.greentick.ai/mcp"
+      "url": "https://api.greentick.ai/mcp",
+      "auth": {
+        "CLIENT_ID": "https://cursor.com/oauth/mcp-client.json",
+        "scopes": ["mcp", "offline_access"]
+      }
     }
   }
 }
 ```
 
-Do not set an `Authorization` header. Cursor starts the GreenTick sign-in when it connects.
+Do not set an `Authorization` header and do not paste a client secret. The client id is Cursor's public metadata document. Cursor starts the GreenTick sign-in when it connects.
+
+## Gemini CLI
+
+Clone the plugins repository and install the Gemini folder. Gemini CLI looks for `gemini-extension.json` in the folder you pass it.
+
+```bash
+git clone https://github.com/AkshayAgrawal1997/greentick-plugins.git
+gemini extensions install ./greentick-plugins/gemini
+```
+
+Leave port 7777 free. Start Gemini CLI and run `/mcp auth greentick`. Sign in as the account owner. The extension includes the workflows for templates, broadcasts, contacts, and the other jobs.
+
+## OpenClaw
+
+Clone the plugins repository and install the OpenClaw folder. OpenClaw looks for `openclaw.plugin.json` in the folder you pass it.
+
+```bash
+git clone https://github.com/AkshayAgrawal1997/greentick-plugins.git
+openclaw plugins install ./greentick-plugins/openclaw
+```
+
+Start the Gateway and run `openclaw mcp login greentick`. Sign in as the account owner. The plugin includes the workflows for templates, broadcasts, contacts, and the other jobs.
 
 ## VS Code
 
